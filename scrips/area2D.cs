@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Area2d : Area2D
+public partial class area2d : Area2D
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -14,7 +14,7 @@ public partial class Area2d : Area2D
 	}
 	
 	public void OnBodyEntered(Node2D body) {
-		GD.Print($"Colision detected {body.Name}");
+		GD.Print("Colision detected");
 		var collision = body.GetNode<CollisionShape2D>("CollisionShape2D");
 		GetTree().ReloadCurrentScene();
 	}
