@@ -19,8 +19,8 @@ public partial class CharacterBody2d : CharacterBody2D
 	
 	private PackedScene bullet;
 	
-	private double timerOfAttack = 1.4;
-	private double actualTimerOfAttack = 1.4;
+	private double timerOfAttack = 0.8;
+	private double actualTimerOfAttack = 0.8;
 	
 	
 	public override void _Ready() {
