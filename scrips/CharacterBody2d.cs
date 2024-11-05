@@ -8,53 +8,96 @@ public partial class CharacterBody2d : CharacterBody2D
 	[Export]
 	public float JumpVelocity;
 	
-	private bool attacking = false;
+	//[Export]
+	//public Vector2 bulletOffSet = Vector2();
+	//[Export]
+	//public float bulletSpeed = 200;
+	
+	private bool isAttacking = false;
 	
 	private AnimatedSprite2D animation; 
 	
+	private PackedScene bullet;
+	
+	private double timerOfAttack = 0.2;
+	
 	public override void _Ready() {
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		//bullet = GD.Link
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		
+		
 		Vector2 velocity = Velocity;
+
+		//if (Input.IsActionJustPressed("")) {
+		//	Bullet initBullet = (ataque) bullet.Inter;
+		// if (!animation.FlipH) {
+		// 		initBullet.Speed *= -1;
+		// 		bulletOffSet.X *= -1;
+		// }
+		//	initBullet.Position = GlobalPosition + bulletOffSet;
+	
+		//	GetTree.Root.(initBullet);
+		//}
+
 
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
-		}
+			animation.Play("jump");
+		} 
 
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
-			animation.Play("jump");
 		}
 		
-		if (Input.IsActionJustPressed("attack") && attacking == false)
+		if (Input.IsActionJustPressed("attack") && isAttacking == false)
 		{
-			animation.Play("attack");
-			attacking = true;
+			attack();
+			
 		}
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_left", "ui_left");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
-			animation.FlipH = velocity.X < 0;
-			animation.Play("walk");
+		
+		if (!isAttacking) {
+			if (direction != Vector2.Zero)
+			{
+				velocity.X = direction.X * Speed;
+				animation.FlipH = velocity.X < 0;
+				if (IsOnFloor())
+				{
+					animation.Play("walk");
+				} 
+			}
+			else
+			{
+				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+				if (IsOnFloor())
+				{
+					animation.Play("idle");
+				} 
+			}
+		} else {
+			timerOfAttack -= delta;
+			if (timerOfAttack == 0){
+				timerOfAttack = 0.2;
+				isAttacking = false;
+			}
+			animation.Play("attack");
 		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-			animation.Play("idle");
-		}
-
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+	
+	public void attack() {
+		isAttacking = true;
 	}
 }
