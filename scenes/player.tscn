@@ -87,9 +87,8 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsdlt"]
-radius = 12.0
-height = 46.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsmeg"]
+size = Vector2(28, 46)
 
 [node name="player" type="Node2D"]
 
@@ -98,6 +97,15 @@ collision_mask = 7
 script = ExtResource("1_vt7ml")
 Speed = 200.0
 JumpVelocity = -260.0
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(15, 36)
+rotation = -1.56261
+scale = Vector2(0.00141435, 13.5512)
+zoom = Vector2(2.995, 2.995)
+drag_vertical_offset = 1.0
+drag_top_margin = 1.0
+drag_bottom_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
@@ -108,14 +116,5 @@ autoplay = "idle"
 frame_progress = 0.685477
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-101, 92)
-shape = SubResource("CapsuleShape2D_bsdlt")
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(15, 36)
-rotation = -1.56261
-scale = Vector2(0.00141435, 13.5512)
-zoom = Vector2(2.995, 2.995)
-drag_vertical_enabled = true
-drag_top_margin = 1.0
-drag_bottom_margin = 0.0
+position = Vector2(-99, 91)
+shape = SubResource("RectangleShape2D_dsmeg")

@@ -8,6 +8,8 @@ public partial class CharacterBody2d : CharacterBody2D
 	[Export]
 	public float JumpVelocity;
 	
+	private bool attacking = false;
+	
 	private AnimatedSprite2D animation; 
 	
 	public override void _Ready() {
@@ -25,14 +27,21 @@ public partial class CharacterBody2d : CharacterBody2D
 		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
+			animation.Play("jump");
+		}
+		
+		if (Input.IsActionJustPressed("attack") && attacking == false)
+		{
+			animation.Play("attack");
+			attacking = true;
 		}
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_left", "ui_left");
 		if (direction != Vector2.Zero)
 		{
 			velocity.X = direction.X * Speed;
