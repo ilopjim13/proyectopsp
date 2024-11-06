@@ -19,8 +19,9 @@ public partial class CharacterBody2d : CharacterBody2D
 	
 	private PackedScene bullet;
 	
-	private double timerOfAttack = 0.8;
-	private double actualTimerOfAttack = 0.8;
+	private double timerOfAttack = 0.4;
+	private double actualTimerOfAttack = 0.4;
+	
 	
 	
 	public override void _Ready() {
@@ -50,7 +51,10 @@ public partial class CharacterBody2d : CharacterBody2D
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
-			animation.Play("jump");
+			if (!isAttacking) {
+				animation.Play("jump");
+			}
+		
 		} 
 
 		// Handle Jump.
@@ -62,7 +66,13 @@ public partial class CharacterBody2d : CharacterBody2D
 		if (Input.IsActionJustPressed("attack") && isAttacking == false)
 		{
 			attack();
-			
+			animation.Play("attack");
+		}
+		
+		if (Input.IsActionJustPressed("attack2") && isAttacking == false)
+		{
+			attack();
+			animation.Play("attack2");
 		}
 
 		// Get the input direction and handle the movement/deceleration.
@@ -77,7 +87,10 @@ public partial class CharacterBody2d : CharacterBody2D
 				if (IsOnFloor())
 				{
 					animation.Play("walk");
+					Velocity = velocity;
+					MoveAndSlide();
 				} 
+				
 			}
 			else
 			{
@@ -85,7 +98,10 @@ public partial class CharacterBody2d : CharacterBody2D
 				if (IsOnFloor())
 				{
 					animation.Play("idle");
+					Velocity = velocity;
+					MoveAndSlide();
 				} 
+				
 			}
 		} else {
 			actualTimerOfAttack -= delta;
@@ -93,10 +109,12 @@ public partial class CharacterBody2d : CharacterBody2D
 				actualTimerOfAttack = timerOfAttack;
 				isAttacking = false;
 			}
-			animation.Play("attack");
 		}
-		Velocity = velocity;
-		MoveAndSlide();
+		if (!IsOnFloor()) {
+			Velocity = velocity;
+			MoveAndSlide();
+		}
+		
 	}
 	
 	public void attack() {

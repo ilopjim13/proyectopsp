@@ -1,4 +1,4 @@
-[gd_scene load_steps=495 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=492 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Texture2D" uid="uid://m2a3ffgb3f8o" path="res://assets/tileset/arch_1.png" id="1_xcmxi"]
@@ -2196,61 +2196,49 @@ animations = [{
 radius = 18.0
 height = 50.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rup7j"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3o2q"]
 atlas = ExtResource("203_5mfqt")
-region = Rect2(0, 44, 180, 80)
+region = Rect2(360, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d5jol"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_if1ru"]
 atlas = ExtResource("203_5mfqt")
-region = Rect2(180, 44, 180, 80)
+region = Rect2(540, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p7nim"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_phseo"]
 atlas = ExtResource("203_5mfqt")
-region = Rect2(360, 44, 180, 80)
+region = Rect2(720, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7hb70"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_21xyd"]
 atlas = ExtResource("203_5mfqt")
-region = Rect2(540, 44, 180, 80)
+region = Rect2(900, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xutu4"]
-atlas = ExtResource("203_5mfqt")
-region = Rect2(720, 44, 180, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m3kuh"]
-atlas = ExtResource("203_5mfqt")
-region = Rect2(900, 44, 180, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5r3rp"]
-atlas = ExtResource("203_5mfqt")
-region = Rect2(1080, 44, 180, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1pu3i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_86657"]
 atlas = ExtResource("204_exk20")
-region = Rect2(0, 31, 180, 92)
+region = Rect2(0, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vwwfw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6apv"]
 atlas = ExtResource("204_exk20")
-region = Rect2(180, 31, 180, 92)
+region = Rect2(180, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wjmmk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n7pb"]
 atlas = ExtResource("204_exk20")
-region = Rect2(360, 31, 180, 92)
+region = Rect2(360, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_32i86"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hchmn"]
 atlas = ExtResource("204_exk20")
-region = Rect2(540, 31, 180, 92)
+region = Rect2(540, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vx5x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6xh8"]
 atlas = ExtResource("204_exk20")
-region = Rect2(720, 31, 180, 92)
+region = Rect2(720, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dn5b2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5r2se"]
 atlas = ExtResource("204_exk20")
-region = Rect2(900, 31, 180, 92)
+region = Rect2(900, 0, 180, 180)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_76wp4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8chhy"]
 atlas = ExtResource("204_exk20")
-region = Rect2(1080, 31, 180, 92)
+region = Rect2(1080, 0, 180, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sd51f"]
 atlas = ExtResource("203_0h3ja")
@@ -2344,55 +2332,46 @@ region = Rect2(1260, 60, 180, 60)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rup7j")
+"texture": SubResource("AtlasTexture_g3o2q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d5jol")
+"texture": SubResource("AtlasTexture_if1ru")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p7nim")
+"texture": SubResource("AtlasTexture_phseo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7hb70")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xutu4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m3kuh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5r3rp")
+"texture": SubResource("AtlasTexture_21xyd")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1pu3i")
+"texture": SubResource("AtlasTexture_86657")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vwwfw")
+"texture": SubResource("AtlasTexture_u6apv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wjmmk")
+"texture": SubResource("AtlasTexture_0n7pb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_32i86")
+"texture": SubResource("AtlasTexture_hchmn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6vx5x")
+"texture": SubResource("AtlasTexture_n6xh8")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dn5b2")
+"texture": SubResource("AtlasTexture_5r2se")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_76wp4")
+"texture": SubResource("AtlasTexture_8chhy")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack2",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2530,8 +2509,10 @@ texture_filter = 1
 position = Vector2(-105, 94)
 scale = Vector2(0.833333, 0.833333)
 sprite_frames = SubResource("SpriteFrames_nd7ej")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-101, 95)
@@ -2546,12 +2527,12 @@ drag_vertical_enabled = true
 drag_top_margin = 1.0
 drag_bottom_margin = 0.0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="killzone" type="Area2D" parent="."]
 script = ExtResource("208_r6xa7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 position = Vector2(24, 47)
 shape = SubResource("WorldBoundaryShape2D_mb0sm")
 
 [connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D/Area2D" method="OnBodyEntered"]
-[connection signal="body_entered" from="Area2D" to="Area2D" method="onBodyEntered"]
+[connection signal="body_entered" from="killzone" to="killzone" method="onBodyEntered"]

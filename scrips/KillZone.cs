@@ -14,7 +14,7 @@ public partial class KillZone : Area2D
 	}
 	
 	public void onBodyEntered(Node2D body) {
-		GD.Print(body.Name);
+		//GD.Print(body.Name);
 		var collision = body.GetNode<CollisionShape2D>("CollisionShape2D");
 		GetTree().ReloadCurrentScene();
 	}
