@@ -86,7 +86,7 @@ public partial class CharacterBody2d : CharacterBody2D
 			{
 				velocity.X = direction.X * Speed;
 				animation.FlipH = velocity.X < 0;
-				if (IsOnFloor() && !isAttacking && !isAttacking2)
+				if (IsOnFloor())
 				{
 					animation.Play("walk");
 					Velocity = velocity;
@@ -97,7 +97,7 @@ public partial class CharacterBody2d : CharacterBody2D
 			else
 			{
 				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-				if (IsOnFloor() && !isAttacking && !isAttacking2)
+				if (IsOnFloor())
 				{
 					animation.Play("idle");
 					Velocity = velocity;
