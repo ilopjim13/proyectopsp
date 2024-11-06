@@ -14,6 +14,7 @@ public partial class CharacterBody2d : CharacterBody2D
 	//public float bulletSpeed = 200;
 	
 	private bool isAttacking = false;
+	private bool isAttacking2 = false;
 	
 	private AnimatedSprite2D animation; 
 	
@@ -22,7 +23,8 @@ public partial class CharacterBody2d : CharacterBody2D
 	private double timerOfAttack = 0.4;
 	private double actualTimerOfAttack = 0.4;
 	
-	
+	private double timerOfAttack2 = 0.6;
+	private double actualTimerOfAttack2 = 0.6;
 	
 	public override void _Ready() {
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -71,7 +73,7 @@ public partial class CharacterBody2d : CharacterBody2D
 		
 		if (Input.IsActionJustPressed("attack2") && isAttacking == false)
 		{
-			attack();
+			attack2();
 			animation.Play("attack2");
 		}
 
@@ -79,12 +81,12 @@ public partial class CharacterBody2d : CharacterBody2D
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_left", "ui_left");
 		
-		if (!isAttacking) {
+		if (!isAttacking && !isAttacking2) {
 			if (direction != Vector2.Zero)
 			{
 				velocity.X = direction.X * Speed;
 				animation.FlipH = velocity.X < 0;
-				if (IsOnFloor())
+				if (IsOnFloor() && !isAttacking && !isAttacking2)
 				{
 					animation.Play("walk");
 					Velocity = velocity;
@@ -95,7 +97,7 @@ public partial class CharacterBody2d : CharacterBody2D
 			else
 			{
 				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-				if (IsOnFloor())
+				if (IsOnFloor() && !isAttacking && !isAttacking2)
 				{
 					animation.Play("idle");
 					Velocity = velocity;
@@ -104,11 +106,20 @@ public partial class CharacterBody2d : CharacterBody2D
 				
 			}
 		} else {
-			actualTimerOfAttack -= delta;
-			if (actualTimerOfAttack <= 0){
-				actualTimerOfAttack = timerOfAttack;
-				isAttacking = false;
+			if (isAttacking) {
+				actualTimerOfAttack -= delta;
+				if (actualTimerOfAttack <= 0){
+					actualTimerOfAttack = timerOfAttack;
+					isAttacking = false;
+				}
+			} else {
+				actualTimerOfAttack2 -= delta;
+				if (actualTimerOfAttack2 <= 0){
+					actualTimerOfAttack2 = timerOfAttack2;
+					isAttacking2 = false;
+				}
 			}
+			
 		}
 		if (!IsOnFloor()) {
 			Velocity = velocity;
@@ -119,5 +130,8 @@ public partial class CharacterBody2d : CharacterBody2D
 	
 	public void attack() {
 		isAttacking = true;
+	}
+	public void attack2() {
+		isAttacking2 = true;
 	}
 }
