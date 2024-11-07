@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6n10hxk6b1e3"]
+
+[ext_resource type="Script" path="res://scripts/Pichos.cs" id="1_njl5l"]
+[ext_resource type="Texture2D" uid="uid://fsyjauor0g3i" path="res://assets/tileset/spikes.png" id="2_2j1o2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6fao3"]
+size = Vector2(32, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lh07g"]
+size = Vector2(32, 32)
+
+[node name="Pincho" type="Node2D"]
+
+[node name="danio" type="Area2D" parent="."]
+position = Vector2(35, 12)
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_njl5l")
+
+[node name="Spikes" type="Sprite2D" parent="danio"]
+texture_filter = 1
+position = Vector2(0, 1)
+texture = ExtResource("2_2j1o2")
+
+[node name="danio" type="CollisionShape2D" parent="danio"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_6fao3")
+
+[node name="suelo" type="Area2D" parent="."]
+
+[node name="suelo" type="CollisionShape2D" parent="suelo"]
+position = Vector2(35, 16)
+shape = SubResource("RectangleShape2D_lh07g")
+
+[connection signal="body_entered" from="danio" to="danio" method="OnBodyEntered"]
