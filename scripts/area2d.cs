@@ -14,8 +14,11 @@ public partial class area2d : Area2D
 	}
 	
 	public void OnBodyEntered(Node2D body) {
-		GD.Print("Colision detected");
 		var collision = body.GetNode<CollisionShape2D>("CollisionShape2D");
-		GetTree().ReloadCurrentScene();
+		//GetTree().ReloadCurrentScene();
+		if (body is MainCharacter characterBody) {
+			characterBody.ReceiveDamage(20);
+			GD.Print(characterBody.Hp);
+		}
 	}
 }

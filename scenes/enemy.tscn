@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://k138hi6v8n07"]
 
 [ext_resource type="Texture2D" uid="uid://68s2apbj0t57" path="res://assets/Characters/enemy/Skeleton/Idle.png" id="1_r7gjg"]
-[ext_resource type="Script" path="res://scrips/area2d.cs" id="2_ifhk2"]
+[ext_resource type="Script" path="res://scripts/area2d.cs" id="2_ifhk2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_musm5"]
 atlas = ExtResource("1_r7gjg")

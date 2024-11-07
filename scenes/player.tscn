@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://dlrqe2i3e1b6g"]
 
-[ext_resource type="Script" path="res://scrips/CharacterBody2d.cs" id="1_vt7ml"]
+[ext_resource type="Script" path="res://scripts/MainCharacter.cs" id="1_vt7ml"]
 [ext_resource type="Texture2D" uid="uid://b174r4cwgai20" path="res://assets/Characters/knight/idle/idle_knight_1.png" id="2_j4oge"]
 [ext_resource type="Texture2D" uid="uid://coofmrqf705w1" path="res://assets/Characters/knight/idle/idle_knight_2.png" id="3_dgqme"]
 [ext_resource type="Texture2D" uid="uid://d06rts0lkl1jv" path="res://assets/Characters/knight/idle/idle_knight_3.png" id="4_v72xn"]
