@@ -15,7 +15,8 @@ public partial class Enemigo : Area2D
 	private double actualTimeWait;
 	
 	private bool isAttack = false;
-	private bool canAttack = false;
+	private bool canAttack = true;
+	private bool isInside = false;
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -28,7 +29,6 @@ public partial class Enemigo : Area2D
 			areaAtaque.Connect(nameof(AreaAtaque.EnemyAttackEventHandler), new Callable(this, nameof(OnEnemyAttack))); 
 		}
 		animation = GetNode<AnimatedSprite2D>("EnemigoSprite");
-		animation.Connect("animation_finished", new Callable(this, nameof(OnAnimationFinished)));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,11 +39,14 @@ public partial class Enemigo : Area2D
 			animation.Play("idle");
 		} else {
 			animation.Play("attack");
-			actualTimeAttack -= delta;
-			if (actualTimeAttack <= 0){
-				actualTimeAttack = timeAttack;
-				isAttack = false;
-				canAttack = true;
+			
+			if(isInside) {
+				Timer attackCooldown = new Timer(); 
+				attackCooldown.WaitTime = timeAttack; 
+				attackCooldown.OneShot = true; 
+				attackCooldown.Connect("timeout", new Callable(this, nameof(ResetAttack))); 
+				AddChild(attackCooldown); 
+				attackCooldown.Start(); 
 			}
 		}
 		
@@ -51,7 +54,7 @@ public partial class Enemigo : Area2D
 	
 	public void OnBodyEntered(Node2D body) {
 		if (body is MainCharacter characterBody) {
-			GD.Print(characterBody.Hp);
+			GD.Print("besito");
 		}
 	}
 	
@@ -60,44 +63,24 @@ public partial class Enemigo : Area2D
 		GD.Print("Atacando al jugador."); 
 		if (body is MainCharacter characterBody) {
 			isAttack = true;
-			
-			if (canAttack) {
-				characterBody.ReceiveDamage(20);
-				GD.Print(characterBody.Hp);
-			}
+			if (isAttack && animation.Animation == "idle") { 
+				GD.Print("is attack"); 
+				var bodies = areaAtaque.GetOverlappingBodies(); 
+				foreach (var b in bodies) 
+				{ 
+					GD.Print("FOR"); 
+					characterBody.ReceiveDamage(20); 
+					
+					} 
+				} 
 		}
 	}
 
-
-	private void OnAnimationFinished() { 
-		
-	// Si está en estado de ataque y la animación de ataque ha terminado 
-	if (isAttack && animation.Animation == "attack") { 
-		// Encontrar todos los cuerpos dentro del área de ataque 
-		var bodies = areaAtaque.GetOverlappingBodies(); 
-		foreach (var body in bodies) 
-		{ 
-			if (body is MainCharacter characterBody) { 
-				// Aplicar daño al jugador 
-				if (canAttack) { 
-					characterBody.ReceiveDamage(20); 
-					GD.Print(characterBody.Hp); 
-					canAttack = false; 
-					// Esperar un poco antes del siguiente ataque 
-					Timer attackCooldown = new Timer(); 
-					attackCooldown.WaitTime = timeAttack; 
-					attackCooldown.OneShot = true; 
-					attackCooldown.Connect("timeout", new Callable(this, nameof(ResetAttack))); 
-					AddChild(attackCooldown); 
-					attackCooldown.Start(); 
-					} 
-				} 
-			} 
-		} 
-	} 
 	private void ResetAttack() 
 	{ 
 		canAttack = true; 
+		isAttack = true;
+		GD.Print("SE PONE EN TRUE");
 	}
 
 	
@@ -105,6 +88,10 @@ public partial class Enemigo : Area2D
 		if (body is MainCharacter) {
 			actualTimeWait = timeWait;
 			actualTimeAttack = timeAttack;
+			canAttack = false; 
+			isAttack = false;
+			isInside = false;
+			GD.Print("ADIOS");
 		}
 	}
 }
