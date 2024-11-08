@@ -14,7 +14,6 @@ public partial class Pichos : Area2D
 	}
 	
 	public void OnBodyEntered(Node2D body) {
-		var collision = body.GetNode<CollisionShape2D>("danio");
 		//GetTree().ReloadCurrentScene();
 		if (body is MainCharacter characterBody) {
 			characterBody.ReceiveDamage(5);

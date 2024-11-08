@@ -8,10 +8,10 @@ public partial class MainCharacter : CharacterBody2D
 	[Export]
 	public float JumpVelocity;
 	
-	//[Export]
-	//public Vector2 bulletOffSet = Vector2();
-	//[Export]
-	//public float bulletSpeed = 200;
+	[Export]
+	public Vector2 bulletOffSet;
+	[Export]
+	public float bulletSpeed = 200;
 	
 	private bool isAttacking = false;
 	private bool isAttacking2 = false;
@@ -28,6 +28,8 @@ public partial class MainCharacter : CharacterBody2D
 	
 	private double timerOfAttack = 0.4;
 	private double actualTimerOfAttack = 0.4;
+
+	public double bulletLifeSpan = 0.4;
 	
 	private double timerOfAttack2 = 0.6;
 	private double actualTimerOfAttack2 = 0.6;
@@ -41,8 +43,8 @@ public partial class MainCharacter : CharacterBody2D
 	
 	public override void _Ready() {
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		//bullet = GD.Link
-		
+		bullet = (PackedScene)ResourceLoader.Load("res://scenes/ataque.tscn");
+		bulletOffSet = new Vector2(20, 0);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -51,16 +53,35 @@ public partial class MainCharacter : CharacterBody2D
 		
 		Vector2 velocity = Velocity;
 
-		//if (Input.IsActionJustPressed("")) {
-		//	Bullet initBullet = (ataque) bullet.Inter;
-		// if (!animation.FlipH) {
-		// 		initBullet.Speed *= -1;
-		// 		bulletOffSet.X *= -1;
-		// }
-		//	initBullet.Position = GlobalPosition + bulletOffSet;
-	
-		//	GetTree.Root.(initBullet);
-		//}
+		// Verificar si una acción específica ha sido presionada
+		if (Input.IsActionJustPressed("attack")) 
+		{
+			// Instanciar el bullet
+			Ataque initBullet = (Ataque)bullet.Instantiate();
+
+			// Si la animación no está volteada horizontalmente
+			if (!animation.FlipH) 
+			{
+				// Cambiar la dirección de la velocidad del bullet
+				initBullet.Speed *= -1;
+				bulletOffSet.X *= -1;
+			}
+
+			// Establecer la posición del bullet en base a la posición global del characterBody y un offset
+			initBullet.Position = GlobalPosition + bulletOffSet;
+
+			// Agregar el bullet a la escena
+			GetTree().Root.AddChild(initBullet);
+
+			var timer = new Timer(); 
+			timer.WaitTime = bulletLifeSpan; 
+			timer.OneShot = true; 
+			timer.Connect("timeout", new Callable(initBullet, "queue_free")); 
+			initBullet.AddChild(timer); 
+			timer.Start();
+
+		}
+
 
 		// Add the gravity.
 		if (!IsOnFloor())
@@ -119,25 +140,13 @@ public partial class MainCharacter : CharacterBody2D
 				}
 			} else {
 				if (isAttacking) {
-					actualTimerOfAttack -= delta;
-					if (actualTimerOfAttack <= 0){
-						actualTimerOfAttack = timerOfAttack;
-						isAttacking = false;
-					}
+					attacking(delta);
 				} else if(isAttacking2) {
-					actualTimerOfAttack2 -= delta;
-					if (actualTimerOfAttack2 <= 0){
-						actualTimerOfAttack2 = timerOfAttack2;
-						isAttacking2 = false;
-					}
+					attacking2(delta);
 				} else {
-					animation.Play("takeHit");
-					actualTimerOfHit-= delta;
-					if (actualTimerOfHit <= 0){
-						actualTimerOfHit = timerOfHit;
-						isHitting = false;
-					}
+					takeHit(delta);
 				}
+				
 			}
 			if (!IsOnFloor()) {
 				Velocity = velocity;
@@ -158,6 +167,33 @@ public partial class MainCharacter : CharacterBody2D
 	}
 	public void attack2() {
 		isAttacking2 = true;
+	}
+	
+	public void attacking(double delta) {
+		if (isAttacking) {
+			actualTimerOfAttack -= delta;
+			if (actualTimerOfAttack <= 0){
+				actualTimerOfAttack = timerOfAttack;
+				isAttacking = false;
+			}
+		}
+	}
+	
+	public void takeHit(double delta) {
+		animation.Play("takeHit");
+		actualTimerOfHit-= delta;
+		if (actualTimerOfHit <= 0){
+			actualTimerOfHit = timerOfHit;
+			isHitting = false;
+		}
+	}
+	
+	public void attacking2(double delta) {
+		actualTimerOfAttack2 -= delta;
+		if (actualTimerOfAttack2 <= 0){
+			actualTimerOfAttack2 = timerOfAttack2;
+			isAttacking2 = false;
+		}
 	}
 	
 	public void ReceiveDamage(int damage) {

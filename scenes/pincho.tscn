@@ -13,7 +13,7 @@ size = Vector2(32, 32)
 
 [node name="danio" type="Area2D" parent="."]
 position = Vector2(35, 12)
-collision_layer = 7
+collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_njl5l")
 
@@ -26,7 +26,9 @@ texture = ExtResource("2_2j1o2")
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_6fao3")
 
-[node name="suelo" type="Area2D" parent="."]
+[node name="suelo" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 7
 
 [node name="suelo" type="CollisionShape2D" parent="suelo"]
 position = Vector2(35, 16)
