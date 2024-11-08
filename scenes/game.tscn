@@ -166,7 +166,7 @@
 [ext_resource type="Texture2D" uid="uid://cnsws2x0tywuy" path="res://assets/Decorations/flag_blue.png" id="162_ouicx"]
 [ext_resource type="Texture2D" uid="uid://bu4vg7sl80fr2" path="res://assets/Decorations/flag_red.png" id="163_1r3hd"]
 [ext_resource type="Texture2D" uid="uid://cd7x752cthb3w" path="res://assets/Decorations/langdebeve.png" id="164_lf71f"]
-[ext_resource type="Script" path="res://scripts/area2d.cs" id="165_ebjew"]
+[ext_resource type="Script" path="res://scripts/Enemigo.cs" id="165_ebjew"]
 [ext_resource type="Texture2D" uid="uid://cpk2co5il0vwt" path="res://assets/Decorations/pole_axe.png" id="165_vshhh"]
 [ext_resource type="Texture2D" uid="uid://b2fmmwwnvt3bb" path="res://assets/Decorations/potions_1.png" id="166_mmh3s"]
 [ext_resource type="Texture2D" uid="uid://ckslo8jo21v1j" path="res://assets/Decorations/potions_2.png" id="167_u0pcl"]
@@ -2583,7 +2583,7 @@ radius = 18.0
 height = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flr3e"]
-size = Vector2(29.5, 23)
+size = Vector2(41.75, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3o2q"]
 atlas = ExtResource("203_5mfqt")
@@ -3030,7 +3030,7 @@ shape = SubResource("CapsuleShape2D_et61p")
 script = ExtResource("211_77ldk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo/AreaAtaque"]
-position = Vector2(35.25, -10.5)
+position = Vector2(28.875, -1)
 shape = SubResource("RectangleShape2D_flr3e")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -3096,4 +3096,5 @@ shape = SubResource("WorldBoundaryShape2D_mb0sm")
 [connection signal="body_entered" from="Enemigo" to="Enemigo" method="OnBodyEntered"]
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo" method="OnEnemyAttack"]
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo/AreaAtaque" method="OnBodyEntered"]
+[connection signal="body_exited" from="Enemigo/AreaAtaque" to="Enemigo" method="OnBodyExited"]
 [connection signal="body_entered" from="killzone" to="killzone" method="onBodyEntered"]

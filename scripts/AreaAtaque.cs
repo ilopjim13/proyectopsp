@@ -4,7 +4,7 @@ using System;
 public partial class AreaAtaque : Area2D
 {
 	[Signal]
-	public delegate void OnEnemyAttackEventHandler(Node body);
+	public delegate void EnemyAttackEventHandler(Node body);
 
 	public override void _Ready()
 	{
@@ -17,8 +17,7 @@ public partial class AreaAtaque : Area2D
 		if (body is CharacterBody2D)
 		{
 			GD.Print("Jugador en el área de ataque.");
-			// Disparar la señal de ataque
-			EmitSignal(nameof(OnEnemyAttackEventHandler), body);
+			EmitSignal(nameof(EnemyAttackEventHandler), body);
 		}
 	}
 }
