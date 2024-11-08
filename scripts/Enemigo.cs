@@ -17,6 +17,8 @@ public partial class Enemigo : Area2D
 	private bool isAttack = false;
 	private bool canAttack = true;
 	private bool isInside = false;
+	
+	private MainCharacter characterBody;
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -29,6 +31,7 @@ public partial class Enemigo : Area2D
 			areaAtaque.Connect(nameof(AreaAtaque.EnemyAttackEventHandler), new Callable(this, nameof(OnEnemyAttack))); 
 		}
 		animation = GetNode<AnimatedSprite2D>("EnemigoSprite");
+		characterBody = GetNode<MainCharacter>("../CharacterBody2D");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,23 +64,13 @@ public partial class Enemigo : Area2D
 	private void OnEnemyAttack(Node body) 
 	{ 
 		GD.Print("Atacando al jugador."); 
-		if (body is MainCharacter characterBody) {
-			isAttack = true;
-			if (isAttack && animation.Animation == "idle") { 
-				GD.Print("is attack"); 
-				var bodies = areaAtaque.GetOverlappingBodies(); 
-				foreach (var b in bodies) 
-				{ 
-					GD.Print("FOR"); 
-					characterBody.ReceiveDamage(20); 
-					
-					} 
-				} 
-		}
+		isAttack = true;
+		isInside = true;
 	}
 
 	private void ResetAttack() 
 	{ 
+		characterBody.ReceiveDamage(20); 
 		canAttack = true; 
 		isAttack = true;
 		GD.Print("SE PONE EN TRUE");
