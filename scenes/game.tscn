@@ -1,4 +1,4 @@
-[gd_scene load_steps=542 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=543 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Texture2D" uid="uid://c7rovsay7xhnn" path="res://assets/Background/layer_1.png" id="1_nygm4"]
@@ -213,6 +213,7 @@
 [ext_resource type="Texture2D" uid="uid://dsh2o3jiwrhek" path="res://assets/Characters/mainCharacter/Jump.png" id="204_xlwmq"]
 [ext_resource type="Texture2D" uid="uid://cgsisxxw220w6" path="res://assets/Characters/enemy/Skeleton/Walk.png" id="205_hed4c"]
 [ext_resource type="Texture2D" uid="uid://bielrhnywin72" path="res://assets/Characters/mainCharacter/Death.png" id="205_wwe1k"]
+[ext_resource type="Script" path="res://scripts/EnemigoSprite.cs" id="208_0bbgw"]
 [ext_resource type="Texture2D" uid="uid://cqquhit4amy2i" path="res://assets/Characters/mainCharacter/Take Hit.png" id="208_eqyja"]
 [ext_resource type="Script" path="res://scripts/KillZone.cs" id="208_r6xa7"]
 [ext_resource type="Script" path="res://scripts/AreaAtaque.cs" id="211_77ldk"]
@@ -3001,9 +3002,9 @@ script = ExtResource("165_ebjew")
 [node name="EnemigoSprite" type="AnimatedSprite2D" parent="Enemigo"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xsews")
-animation = &"death"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.826228
+script = ExtResource("208_0bbgw")
 
 [node name="BarBackground" type="Sprite2D" parent="Enemigo/EnemigoSprite"]
 position = Vector2(5, -33)
@@ -3097,7 +3098,7 @@ position = Vector2(24, 47)
 shape = SubResource("WorldBoundaryShape2D_mb0sm")
 
 [connection signal="body_entered" from="Enemigo" to="Enemigo" method="OnBodyEntered"]
-[connection signal="animation_finished" from="Enemigo/EnemigoSprite" to="Enemigo" method="OnAnimationFinished"]
+[connection signal="animation_finished" from="Enemigo/EnemigoSprite" to="Enemigo/EnemigoSprite" method="OnAnimationFinished"]
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo" method="OnEnemyAttack"]
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo/AreaAtaque" method="OnBodyEntered"]
 [connection signal="body_exited" from="Enemigo/AreaAtaque" to="Enemigo" method="OnBodyExited"]
