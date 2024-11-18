@@ -17,7 +17,6 @@ public partial class Enemigo : Area2D
 	private bool isAttack = false;
 	private bool canAttack = true;
 	private bool isInside = false;
-	Timer attackCooldown; 
 	
 	private MainCharacter characterBody;
 
@@ -25,16 +24,15 @@ public partial class Enemigo : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		actualTimeAttack = timeAttack;
-		actualTimeWait = timeWait;
+		
 		areaAtaque = GetNode<AreaAtaque>("AreaAtaque"); 
-		if (areaAtaque != null) { 
-			areaAtaque.Connect(nameof(AreaAtaque.EnemyAttackEventHandler), new Callable(this, nameof(OnEnemyAttack))); 
-		}
-		animation = GetNode<AnimatedSprite2D>("EnemigoSprite");
+		areaAtaque.Connect(nameof(AreaAtaque.EnemyAttackEventHandler), new Callable(this, nameof(OnEnemyAttack))); 
+		
+		animation = GetNode<EnemigoSprite>("EnemigoSprite");
+		animation.Connect(nameof(EnemigoSprite.AnimationLoopedEventHandler), new Callable(this, nameof(OnAnimationLooped)));
+		
 		characterBody = GetNode<MainCharacter>("../CharacterBody2D");
 		
-		animation.Connect("AnimationFinished", new Callable(this, nameof(Reset)));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,40 +57,26 @@ public partial class Enemigo : Area2D
 	{ 
 		GD.Print("Atacando al jugador."); 
 		isAttack = true;
-		isInside = true;
-		attackCooldown = new Timer();
-		attackCooldown.WaitTime = timeAttack; 
-		attackCooldown.OneShot = true; 
-		attackCooldown.Connect("timeout", new Callable(this, nameof(ResetAttack))); 
-		AddChild(attackCooldown); 
-		attackCooldown.Start(); 
-	}
-
-	private void ResetAttack() 
-	{ 
-		characterBody.ReceiveDamage(20); 
-		canAttack = true; 
-		isAttack = true;
-		attackCooldown.Start();
-		GD.Print("SE PONE EN TRUE");
+		isInside = true;	
 	}
 
 	
 	public void OnBodyExited(Node2D body) {
 		if (body is MainCharacter) {
-			actualTimeWait = timeWait;
-			actualTimeAttack = timeAttack;
-			attackCooldown.Stop();
+			isInside = false;
 			GD.Print("ADIOS");
 		}
 	}
 	
-	public void Reset() {
-		if (!isInside) {
+	public void OnAnimationLooped() {
+		if (!isInside && isAttack) {
 			canAttack = false; 
 			isAttack = false;
-			isInside = false;
-			GD.Print("RESETEADO");
+		} 
+		if (isInside && isAttack) {
+			canAttack = true; 
+			isAttack = true;
+			characterBody.ReceiveDamage(20); 
 		}
 	}
 }

@@ -3,17 +3,16 @@ using System;
 
 public partial class EnemigoSprite : AnimatedSprite2D
 {
-	public delegate void AnimationFinished(); 
+	[Signal]
+	public delegate void AnimationLoopedEventHandler(); 
 	
 	public override void _Ready() 
 	{ 
-		// Conectar la señal animation_finished del AnimatedSprite2D a un método local 
-		Connect("animation_finished", new Callable(this, nameof(AnimationFinished))); 
+		Connect("animation_looped", new Callable(this, nameof(OnAnimationLooped))); 
 	} 
 		
-		private void OnAnimationFinished() 
+		private void OnAnimationLooped() 
 		{ 
-			// Emitir la señal personalizada 
-			EmitSignal(nameof(AnimationFinished)); 
+			EmitSignal(nameof(AnimationLoopedEventHandler)); 
 		}
 }

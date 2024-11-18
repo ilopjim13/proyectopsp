@@ -3098,7 +3098,7 @@ position = Vector2(24, 47)
 shape = SubResource("WorldBoundaryShape2D_mb0sm")
 
 [connection signal="body_entered" from="Enemigo" to="Enemigo" method="OnBodyEntered"]
-[connection signal="animation_finished" from="Enemigo/EnemigoSprite" to="Enemigo/EnemigoSprite" method="OnAnimationFinished"]
+[connection signal="animation_looped" from="Enemigo/EnemigoSprite" to="Enemigo" method="OnAnimationLooped"]
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo" method="OnEnemyAttack"]
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo/AreaAtaque" method="OnBodyEntered"]
 [connection signal="body_exited" from="Enemigo/AreaAtaque" to="Enemigo" method="OnBodyExited"]
