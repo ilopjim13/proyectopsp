@@ -14,6 +14,6 @@ public partial class Ataque : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Position += new Vector2(Speed, (float) delta);
+		Position += new Vector2(Speed * (float) delta, 0.0f);
 	}
 }

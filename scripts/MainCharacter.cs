@@ -45,6 +45,9 @@ public partial class MainCharacter : CharacterBody2D
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		bullet = (PackedScene)ResourceLoader.Load("res://scenes/ataque.tscn");
 		bulletOffSet = new Vector2(20, 0);
+		var enemyScene = (PackedScene)ResourceLoader.Load("res://path/to/Enemy.tscn"); 
+		var enemyInstance = (Area2D)enemyScene.Instantiate(); 
+		GetTree().Root.AddChild(enemyInstance);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -56,21 +59,15 @@ public partial class MainCharacter : CharacterBody2D
 		// Verificar si una acción específica ha sido presionada
 		if (Input.IsActionJustPressed("attack")) 
 		{
-			// Instanciar el bullet
 			Ataque initBullet = (Ataque)bullet.Instantiate();
 
-			// Si la animación no está volteada horizontalmente
 			if (!animation.FlipH) 
 			{
-				// Cambiar la dirección de la velocidad del bullet
 				initBullet.Speed *= -1;
 				bulletOffSet.X *= -1;
 			}
 
-			// Establecer la posición del bullet en base a la posición global del characterBody y un offset
 			initBullet.Position = GlobalPosition + bulletOffSet;
-
-			// Agregar el bullet a la escena
 			GetTree().Root.AddChild(initBullet);
 
 			var timer = new Timer(); 

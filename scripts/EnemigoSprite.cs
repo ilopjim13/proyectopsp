@@ -10,9 +10,18 @@ public partial class EnemigoSprite : AnimatedSprite2D
 	{ 
 		Connect("animation_looped", new Callable(this, nameof(OnAnimationLooped))); 
 	} 
-		
-		private void OnAnimationLooped() 
-		{ 
-			EmitSignal(nameof(AnimationLoopedEventHandler)); 
-		}
+	
+	
+	public override void _EnterTree()
+	{
+		AddUserSignal("AnimationLoopedEventHandler");
+	}
+	
+	
+	private void OnAnimationLooped() 
+	{ 
+		EmitSignal(nameof(AnimationLoopedEventHandler)); 
+	}
+	
+	
 }

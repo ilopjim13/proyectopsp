@@ -217,7 +217,7 @@
 [ext_resource type="Texture2D" uid="uid://cqquhit4amy2i" path="res://assets/Characters/mainCharacter/Take Hit.png" id="208_eqyja"]
 [ext_resource type="Script" path="res://scripts/KillZone.cs" id="208_r6xa7"]
 [ext_resource type="Script" path="res://scripts/AreaAtaque.cs" id="211_77ldk"]
-[ext_resource type="Script" path="res://scripts/AreaVision.cs" id="213_d424v"]
+[ext_resource type="Script" path="res://scripts/AreaVision.cs" id="213_flljq"]
 [ext_resource type="Script" path="res://scripts/Hud.cs" id="217_34csr"]
 [ext_resource type="Texture2D" uid="uid://2f73uu6dickw" path="res://assets/HUD/bar_background.png" id="218_rohfd"]
 [ext_resource type="Texture2D" uid="uid://hri8quarvtxd" path="res://assets/HUD/health_bar.png" id="219_ljnfy"]
@@ -2588,7 +2588,7 @@ height = 50.0
 size = Vector2(49, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35qm6"]
-size = Vector2(315, 103)
+size = Vector2(163, 103)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3o2q"]
 atlas = ExtResource("203_5mfqt")
@@ -2823,7 +2823,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8chhy")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack2",
 "speed": 9.0
 }, {
@@ -2999,36 +2999,35 @@ texture_filter = 1
 tile_set = SubResource("TileSet_uf5qk")
 
 [node name="Enemigo" type="Area2D" parent="."]
-position = Vector2(-340, 86)
+position = Vector2(-385, 89)
 collision_layer = 4
 script = ExtResource("165_ebjew")
 
 [node name="EnemigoSprite" type="AnimatedSprite2D" parent="Enemigo"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xsews")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 script = ExtResource("208_0bbgw")
 
 [node name="BarBackground" type="Sprite2D" parent="Enemigo/EnemigoSprite"]
-position = Vector2(5, -33)
+position = Vector2(-2.50314, -32.7496)
 scale = Vector2(0.34, 0.5)
 texture = ExtResource("218_rohfd")
 
 [node name="HealthBar" type="Sprite2D" parent="Enemigo/EnemigoSprite"]
-position = Vector2(5.5, -32.75)
+position = Vector2(-2.00314, -32.4996)
 scale = Vector2(0.33, 0.5)
 texture = ExtResource("219_ljnfy")
 
 [node name="Bar" type="Sprite2D" parent="Enemigo/EnemigoSprite"]
 texture_filter = 1
-position = Vector2(4.99999, -33)
+position = Vector2(-2.50315, -32.7496)
 scale = Vector2(0.346292, 0.346358)
 skew = 0.0291611
 texture = ExtResource("220_bx8b0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
-position = Vector2(3, 0)
 shape = SubResource("CapsuleShape2D_et61p")
 
 [node name="AreaAtaque" type="Area2D" parent="Enemigo"]
@@ -3039,14 +3038,13 @@ position = Vector2(24.5, 0)
 shape = SubResource("RectangleShape2D_flr3e")
 
 [node name="AreaVision" type="Area2D" parent="Enemigo"]
-script = ExtResource("213_d424v")
+script = ExtResource("213_flljq")
 
 [node name="CollisionAreaVision" type="CollisionShape2D" parent="Enemigo/AreaVision"]
-position = Vector2(5.5, -26.5)
+position = Vector2(81, -26)
 shape = SubResource("RectangleShape2D_35qm6")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(1, -5)
 collision_mask = 7
 script = ExtResource("158_b8i53")
 Speed = 200.0
@@ -3054,15 +3052,14 @@ JumpVelocity = -260.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
-position = Vector2(-105, 94)
+position = Vector2(0, 95)
 scale = Vector2(0.833333, 0.833333)
 sprite_frames = SubResource("SpriteFrames_nd7ej")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.831286
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-101, 95)
+position = Vector2(0, 95)
 shape = SubResource("CapsuleShape2D_im2ip")
 
 [node name="BarraVida" type="TextureProgressBar" parent="CharacterBody2D"]
