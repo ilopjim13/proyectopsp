@@ -9,7 +9,6 @@ public partial class AreaVision : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		GD.Print("te veo");
 		Connect("body_entered", new Callable(this, nameof(OnAreaVisionBodyEntered)));
 	}
 
@@ -22,6 +21,7 @@ public partial class AreaVision : Area2D
 	{
 		if (body is CharacterBody2D) 
 		{
+			GD.Print("te veo");
 			EmitSignal(nameof(EnemyVisionEventHandler), body);
 		}
 	}

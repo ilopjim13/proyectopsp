@@ -14,8 +14,9 @@ public partial class Enemigo : Area2D
 	private AreaAtaque areaAtaque;
 	private AreaVision areaVision;
 	
-	private double actualTimerOfHit;
-	private double timerOfHit;
+	private double actualTimerOfHit = 0.7;
+	private double actualTimerOfDeath = 0.7;
+	private double timerOfHit = 0.7;
 	
 	private CollisionShape2D attackCollision;
 	private AnimatedSprite2D animation;
@@ -37,7 +38,7 @@ public partial class Enemigo : Area2D
 		areaAtaque.Connect(nameof(AreaAtaque.EnemyAttackEventHandler), new Callable(this, nameof(OnEnemyAttack))); 
 		
 		areaVision = GetNode<AreaVision>("AreaVision");
-		areaVision.Connect(nameof(AreaVision.EnemyVisionEventHandler), new Callable(this, nameof(OnAreaVision)));
+		areaVision.Connect(nameof(AreaVision.EnemyVisionEventHandler), new Callable(this, nameof(OnBodyEnteredVision)));
 		
 		attackCollision = areaAtaque.GetNode<CollisionShape2D>("CollisionAreaAtaque");
 		
@@ -63,7 +64,7 @@ public partial class Enemigo : Area2D
 			} else {
 				if (isAttack) {
 					animation.Play("attack");
-				} else {
+				} else if(isTakeHit) {
 					TakeHit(delta);
 				}
 				
@@ -74,6 +75,7 @@ public partial class Enemigo : Area2D
 			}
 		} else {
 			animation.Play("death");
+			Eliminated(delta);
 		}
 	}
 	
@@ -90,12 +92,12 @@ public partial class Enemigo : Area2D
 		isInside = true;	
 	}
 	
-	public void OnAreaVision() {
+	public void OnBodyEnteredVision(Node2D body) {
 		GD.Print("Jugador en el campo de vision");
 		isVisible = true;
 	}
 	
-	public void OnAreaVisionBodyExited() {
+	public void OnAreaVisionBodyExited(Node2D body) {
 		isVisible = false;
 	}
 	
@@ -135,6 +137,7 @@ public partial class Enemigo : Area2D
 		if (Hp <= 0) {
 			isDeath = true;
 		} else {
+			GD.Print(Hp);
 			isTakeHit = true;
 		}
 	}
@@ -156,10 +159,15 @@ public partial class Enemigo : Area2D
 		if (isInside && isAttack) {
 			canAttack = true; 
 			isAttack = true;
-			characterBody.ReceiveDamage(10); 
+			characterBody.ReceiveDamage(5); 
 		}
-		if (isDeath) {
-			
-		}
+	}
+
+
+	public void Eliminated(double delta) {
+		actualTimerOfDeath-= delta;
+			if (actualTimerOfDeath <= 0){
+				QueueFree();
+			}
 	}
 }

@@ -17,7 +17,7 @@ public partial class Ataque : Area2D
 	public void OnAreaEntered(Area2D area) {
 		if (area is Enemigo enemigo)
 		{
-			enemigo.ReceiveDamage(20);
+			enemigo.ReceiveDamage(15);
 			GD.Print("DUELE");
 		} 
 	}

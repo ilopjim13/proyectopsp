@@ -3024,6 +3024,8 @@ texture = ExtResource("218_rohfd")
 
 [node name="BarraVida" type="TextureProgressBar" parent="Enemigo/EnemigoSprite"]
 anchors_preset = -1
+anchor_left = -0.446667
+anchor_top = -0.02
 anchor_right = -0.446667
 anchor_bottom = -0.02
 offset_left = -19.0
@@ -3112,5 +3114,6 @@ shape = SubResource("WorldBoundaryShape2D_mb0sm")
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo/AreaAtaque" method="OnBodyEntered"]
 [connection signal="body_exited" from="Enemigo/AreaAtaque" to="Enemigo" method="OnBodyExited"]
 [connection signal="body_entered" from="Enemigo/AreaVision" to="Enemigo" method="OnAreaVisionBodyEntered"]
+[connection signal="body_exited" from="Enemigo/AreaVision" to="Enemigo" method="OnAreaVisionBodyExited"]
 [connection signal="animation_looped" from="Enemigo/EnemigoSprite" to="Enemigo" method="OnAnimationLooped"]
 [connection signal="body_entered" from="killzone" to="killzone" method="onBodyEntered"]

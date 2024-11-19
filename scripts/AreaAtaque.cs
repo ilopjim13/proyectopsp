@@ -8,7 +8,6 @@ public partial class AreaAtaque : Area2D
 
 	public override void _Ready()
 	{
-		GD.Print("Area de ataque lista.");
 		Connect("body_entered", new Callable(this, nameof(OnBodyEntered)));
 	}
 	
@@ -21,7 +20,6 @@ public partial class AreaAtaque : Area2D
 	{
 		if (body is CharacterBody2D)
 		{
-			GD.Print("Jugador en el área de ataque.");
 			EmitSignal(nameof(EnemyAttackEventHandler), body);
 		}
 	}
