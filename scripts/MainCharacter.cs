@@ -39,15 +39,14 @@ public partial class MainCharacter : CharacterBody2D
 	
 	private double actualTimerOfDeath = 1.55;
 	
+	public float BulletSpeed;
+	
 	private Hud vidaHud;
 	
 	public override void _Ready() {
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		bullet = (PackedScene)ResourceLoader.Load("res://scenes/ataque.tscn");
-		bulletOffSet = new Vector2(20, 0);
-		var enemyScene = (PackedScene)ResourceLoader.Load("res://path/to/Enemy.tscn"); 
-		var enemyInstance = (Area2D)enemyScene.Instantiate(); 
-		GetTree().Root.AddChild(enemyInstance);
+		bulletOffSet = new Vector2(30, 90);
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -59,22 +58,20 @@ public partial class MainCharacter : CharacterBody2D
 		// Verificar si una acción específica ha sido presionada
 		if (Input.IsActionJustPressed("attack")) 
 		{
-			Ataque initBullet = (Ataque)bullet.Instantiate();
-
-			if (!animation.FlipH) 
-			{
-				initBullet.Speed *= -1;
-				bulletOffSet.X *= -1;
-			}
-
-			initBullet.Position = GlobalPosition + bulletOffSet;
-			GetTree().Root.AddChild(initBullet);
+			float isFlipped = -1.0f;
+			//GD.Print("Fire");
+			Ataque instBullet = (Ataque) bullet.Instantiate();
+			if(!animation.FlipH) isFlipped = 1.0f;
+			instBullet.Speed = isFlipped * BulletSpeed;
+			
+			instBullet.GlobalPosition = GlobalPosition + new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y);
+			GetTree().Root.AddChild(instBullet);
 
 			var timer = new Timer(); 
 			timer.WaitTime = bulletLifeSpan; 
 			timer.OneShot = true; 
-			timer.Connect("timeout", new Callable(initBullet, "queue_free")); 
-			initBullet.AddChild(timer); 
+			timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
+			instBullet.AddChild(timer); 
 			timer.Start();
 
 		}

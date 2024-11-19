@@ -1,4 +1,4 @@
-[gd_scene load_steps=545 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=544 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Texture2D" uid="uid://c7rovsay7xhnn" path="res://assets/Background/layer_1.png" id="1_nygm4"]
@@ -2398,6 +2398,12 @@ sources/120 = SubResource("TileSetAtlasSource_otrg1")
 sources/121 = SubResource("TileSetAtlasSource_kdw4m")
 sources/122 = SubResource("TileSetAtlasSource_23vww")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flr3e"]
+size = Vector2(49, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35qm6"]
+size = Vector2(163, 103)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_04gmo"]
 atlas = ExtResource("201_kfnk1")
 region = Rect2(0, 0, 150, 150)
@@ -2417,10 +2423,6 @@ region = Rect2(450, 0, 150, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8hxef"]
 atlas = ExtResource("201_kfnk1")
 region = Rect2(600, 0, 150, 150)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6etwo"]
-atlas = ExtResource("201_kfnk1")
-region = Rect2(750, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i7yir"]
 atlas = ExtResource("202_eysan")
@@ -2503,9 +2505,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8hxef")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6etwo")
 }],
 "loop": true,
 "name": &"attack",
@@ -2524,7 +2523,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_irr7v")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -2581,14 +2580,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_et61p"]
-radius = 18.0
-height = 50.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_flr3e"]
-size = Vector2(49, 23)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_35qm6"]
-size = Vector2(163, 103)
+radius = 17.0
+height = 56.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g3o2q"]
 atlas = ExtResource("203_5mfqt")
@@ -3000,35 +2993,8 @@ tile_set = SubResource("TileSet_uf5qk")
 
 [node name="Enemigo" type="Area2D" parent="."]
 position = Vector2(-385, 89)
-collision_layer = 4
 script = ExtResource("165_ebjew")
-
-[node name="EnemigoSprite" type="AnimatedSprite2D" parent="Enemigo"]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_xsews")
-animation = &"idle"
-autoplay = "idle"
-script = ExtResource("208_0bbgw")
-
-[node name="BarBackground" type="Sprite2D" parent="Enemigo/EnemigoSprite"]
-position = Vector2(-2.50314, -32.7496)
-scale = Vector2(0.34, 0.5)
-texture = ExtResource("218_rohfd")
-
-[node name="HealthBar" type="Sprite2D" parent="Enemigo/EnemigoSprite"]
-position = Vector2(-2.00314, -32.4996)
-scale = Vector2(0.33, 0.5)
-texture = ExtResource("219_ljnfy")
-
-[node name="Bar" type="Sprite2D" parent="Enemigo/EnemigoSprite"]
-texture_filter = 1
-position = Vector2(-2.50315, -32.7496)
-scale = Vector2(0.346292, 0.346358)
-skew = 0.0291611
-texture = ExtResource("220_bx8b0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
-shape = SubResource("CapsuleShape2D_et61p")
+speed = 10.0
 
 [node name="AreaAtaque" type="Area2D" parent="Enemigo"]
 script = ExtResource("211_77ldk")
@@ -3044,6 +3010,42 @@ script = ExtResource("213_flljq")
 position = Vector2(81, -26)
 shape = SubResource("RectangleShape2D_35qm6")
 
+[node name="EnemigoSprite" type="AnimatedSprite2D" parent="Enemigo"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_xsews")
+animation = &"death"
+autoplay = "idle"
+script = ExtResource("208_0bbgw")
+
+[node name="BarBackground" type="Sprite2D" parent="Enemigo/EnemigoSprite"]
+position = Vector2(-2.50314, -32.7496)
+scale = Vector2(0.34, 0.5)
+texture = ExtResource("218_rohfd")
+
+[node name="BarraVida" type="TextureProgressBar" parent="Enemigo/EnemigoSprite"]
+anchors_preset = -1
+anchor_right = -0.446667
+anchor_bottom = -0.02
+offset_left = -19.0
+offset_top = -35.0
+offset_right = 81.0
+offset_bottom = -28.0
+tint_under = Color(0, 0, 0, 1)
+tint_progress = Color(1, 0.0156863, 0, 1)
+script = ExtResource("217_34csr")
+metadata/_edit_use_anchors_ = true
+
+[node name="Bar" type="Sprite2D" parent="Enemigo/EnemigoSprite"]
+texture_filter = 1
+position = Vector2(-2.50315, -32.7496)
+scale = Vector2(0.346292, 0.346358)
+skew = 0.0291611
+texture = ExtResource("220_bx8b0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
+position = Vector2(3, 0)
+shape = SubResource("CapsuleShape2D_et61p")
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_mask = 7
 script = ExtResource("158_b8i53")
@@ -3055,7 +3057,7 @@ texture_filter = 1
 position = Vector2(0, 95)
 scale = Vector2(0.833333, 0.833333)
 sprite_frames = SubResource("SpriteFrames_nd7ej")
-animation = &"walk"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -3106,9 +3108,9 @@ position = Vector2(24, 47)
 shape = SubResource("WorldBoundaryShape2D_mb0sm")
 
 [connection signal="body_entered" from="Enemigo" to="Enemigo" method="OnBodyEntered"]
-[connection signal="animation_looped" from="Enemigo/EnemigoSprite" to="Enemigo" method="OnAnimationLooped"]
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo" method="OnEnemyAttack"]
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo/AreaAtaque" method="OnBodyEntered"]
 [connection signal="body_exited" from="Enemigo/AreaAtaque" to="Enemigo" method="OnBodyExited"]
 [connection signal="body_entered" from="Enemigo/AreaVision" to="Enemigo" method="OnAreaVisionBodyEntered"]
+[connection signal="animation_looped" from="Enemigo/EnemigoSprite" to="Enemigo" method="OnAnimationLooped"]
 [connection signal="body_entered" from="killzone" to="killzone" method="onBodyEntered"]

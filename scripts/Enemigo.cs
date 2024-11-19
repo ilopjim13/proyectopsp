@@ -5,9 +5,17 @@ public partial class Enemigo : Area2D
 {
 	[Export]
 	public float speed;
+
+	[Export]
+	public int Hp = 50;
+
+	public int HpMax;
 	
 	private AreaAtaque areaAtaque;
 	private AreaVision areaVision;
+	
+	private double actualTimerOfHit;
+	private double timerOfHit;
 	
 	private CollisionShape2D attackCollision;
 	private AnimatedSprite2D animation;
@@ -16,6 +24,8 @@ public partial class Enemigo : Area2D
 	private bool canAttack = true;
 	private bool isInside = false;
 	private bool isVisible = false;
+	private bool isDeath = false;
+	private bool isTakeHit = false;
 	
 	private MainCharacter characterBody;
 
@@ -40,17 +50,31 @@ public partial class Enemigo : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!isAttack) 
-		{
-			animation.Play("walk");
-		} else {
-			animation.Play("attack");
-		}
 		
-		if (isVisible) {
-			FollowPlayer(delta);
+		if (!isDeath) {
+			if (!isAttack && !isTakeHit) 
+			{
+				if (isVisible) {
+					animation.Play("walk");
+				} else {
+					animation.Play("idle");
+				}
+				
+			} else {
+				if (isAttack) {
+					animation.Play("attack");
+				} else {
+					TakeHit(delta);
+				}
+				
+			}
+			
+			if (isVisible) {
+				FollowPlayer(delta);
+			}
+		} else {
+			animation.Play("death");
 		}
-
 	}
 	
 	public void OnBodyEntered(Node2D body) {
@@ -81,9 +105,10 @@ public partial class Enemigo : Area2D
 		var enemyPosition = GlobalPosition; 
 		var direction = new Vector2((playerPosition.X - enemyPosition.X), 0).Normalized();
 
-		GlobalPosition = GlobalPosition.Lerp(GlobalPosition + direction, speed * (float)delta);
-		animation.FlipH = playerPosition.X < enemyPosition.X;
-		
+		if(!isAttack) {
+			GlobalPosition = GlobalPosition.Lerp(GlobalPosition + direction, speed * (float)delta);
+			animation.FlipH = playerPosition.X < enemyPosition.X;
+		}
 		
 		if (animation.FlipH) 
 		{ 
@@ -104,6 +129,24 @@ public partial class Enemigo : Area2D
 			GD.Print("ADIOS");
 		}
 	}
+
+	public void ReceiveDamage(int damage) {
+		Hp-= damage;
+		if (Hp <= 0) {
+			isDeath = true;
+		} else {
+			isTakeHit = true;
+		}
+	}
+	
+	public void TakeHit(double delta) {
+		animation.Play("takeHit");
+		actualTimerOfHit-= delta;
+		if (actualTimerOfHit <= 0){
+			actualTimerOfHit = timerOfHit;
+			isTakeHit = false;
+		}
+	}
 	
 	public void OnAnimationLooped() {
 		if (!isInside && isAttack) {
@@ -114,6 +157,9 @@ public partial class Enemigo : Area2D
 			canAttack = true; 
 			isAttack = true;
 			characterBody.ReceiveDamage(10); 
+		}
+		if (isDeath) {
+			
 		}
 	}
 }

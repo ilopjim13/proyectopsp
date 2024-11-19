@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4fxt587id71"]
+[gd_scene load_steps=4 format=3 uid="uid://c4fxt587id71"]
 
 [ext_resource type="Script" path="res://scripts/Ataque.cs" id="1_8bq5n"]
-[ext_resource type="Texture2D" uid="uid://2f73uu6dickw" path="res://assets/HUD/bar_background.png" id="1_g1gkp"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_73ikp"]
-atlas = ExtResource("1_g1gkp")
-region = Rect2(0, 0, 25.0366, 7.60266)
+[ext_resource type="Texture2D" uid="uid://2f73uu6dickw" path="res://assets/HUD/bar_background.png" id="2_x8vla"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie4ky"]
 size = Vector2(20, 6)
@@ -13,11 +9,13 @@ size = Vector2(20, 6)
 [node name="ataque" type="Area2D"]
 script = ExtResource("1_8bq5n")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 1)
-scale = Vector2(0.785714, 0.785714)
-texture = SubResource("AtlasTexture_73ikp")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_ie4ky")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(0.2, 0.857143)
+texture = ExtResource("2_x8vla")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
