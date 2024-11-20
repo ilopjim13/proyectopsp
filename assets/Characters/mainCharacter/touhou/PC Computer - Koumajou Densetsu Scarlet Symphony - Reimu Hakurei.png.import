@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciixwch5kj2aj"
-path="res://.godot/imported/PlayStation - Castlevania Symphony of the Night - Axe Armor.png-ec5c6f63b52afe5ceaa7219aba40e762.ctex"
+uid="uid://dit3myj1ag41x"
+path="res://.godot/imported/PC Computer - Koumajou Densetsu Scarlet Symphony - Reimu Hakurei.png-dc667554dc71ede7fe43451370370a5a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Characters/enemy/PlayStation - Castlevania Symphony of the Night - Axe Armor.png"
-dest_files=["res://.godot/imported/PlayStation - Castlevania Symphony of the Night - Axe Armor.png-ec5c6f63b52afe5ceaa7219aba40e762.ctex"]
+source_file="res://assets/Characters/mainCharacter/touhou/PC Computer - Koumajou Densetsu Scarlet Symphony - Reimu Hakurei.png"
+dest_files=["res://.godot/imported/PC Computer - Koumajou Densetsu Scarlet Symphony - Reimu Hakurei.png-dc667554dc71ede7fe43451370370a5a.ctex"]
 
 [params]
 

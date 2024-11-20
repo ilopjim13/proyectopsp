@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://v7sffo23ycjn"
-path="res://.godot/imported/PlayStation - Castlevania Symphony of the Night - Armor Lord & Guardian.png-9640dcf2eee42c7d270c3682bf0c4847.ctex"
+uid="uid://bp1shdbburxhv"
+path="res://.godot/imported/PC Computer - Koumajou Densetsu Scarlet Symphony - Objects.png-4962dc2721c40cd19fdddf8e85776c49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Characters/enemy/PlayStation - Castlevania Symphony of the Night - Armor Lord & Guardian.png"
-dest_files=["res://.godot/imported/PlayStation - Castlevania Symphony of the Night - Armor Lord & Guardian.png-9640dcf2eee42c7d270c3682bf0c4847.ctex"]
+source_file="res://assets/Characters/enemy/PC Computer - Koumajou Densetsu Scarlet Symphony - Objects.png"
+dest_files=["res://.godot/imported/PC Computer - Koumajou Densetsu Scarlet Symphony - Objects.png-4962dc2721c40cd19fdddf8e85776c49.ctex"]
 
 [params]
 

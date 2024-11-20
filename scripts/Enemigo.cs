@@ -9,7 +9,7 @@ public partial class Enemigo : Area2D
 	[Export]
 	public int Hp = 50;
 
-	public int HpMax;
+	public int MaxHp = 50;
 	
 	private AreaAtaque areaAtaque;
 	private AreaVision areaVision;
@@ -29,6 +29,8 @@ public partial class Enemigo : Area2D
 	private bool isTakeHit = false;
 	
 	private MainCharacter characterBody;
+	
+	private BarraVidaEnemy vidaHud;
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -140,6 +142,12 @@ public partial class Enemigo : Area2D
 			GD.Print(Hp);
 			isTakeHit = true;
 		}
+		
+		vidaHud = GetNode<BarraVidaEnemy>("../Enemigo/EnemigoSprite/BarraVidaEnemy"); 
+		if(vidaHud == null) {
+		}
+		vidaHud.ActualizarBarraVida(Hp, MaxHp); 
+		
 	}
 	
 	public void TakeHit(double delta) {

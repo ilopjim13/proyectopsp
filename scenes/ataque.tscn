@@ -1,15 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4fxt587id71"]
+[gd_scene load_steps=4 format=3 uid="uid://c4fxt587id71"]
 
 [ext_resource type="Script" path="res://scripts/Ataque.cs" id="1_8bq5n"]
+[ext_resource type="Texture2D" uid="uid://2f73uu6dickw" path="res://assets/HUD/bar_background.png" id="2_atsod"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ie4ky"]
-size = Vector2(20, 6)
+size = Vector2(51, 6)
 
 [node name="ataque" type="Area2D"]
 script = ExtResource("1_8bq5n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 1)
+position = Vector2(16.5, 1)
 shape = SubResource("RectangleShape2D_ie4ky")
+
+[node name="BarBackground" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(16.5, 1)
+scale = Vector2(0.51, 0.857143)
+texture = ExtResource("2_atsod")
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]

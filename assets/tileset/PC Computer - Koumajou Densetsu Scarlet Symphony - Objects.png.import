@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhbdr1nbrat3v"
-path="res://.godot/imported/PlayStation - Castlevania Symphony of the Night - Bone Halberd.png-9f46643e9b78a341568e45c503c8c3d5.ctex"
+uid="uid://c51dtprtrttae"
+path="res://.godot/imported/PC Computer - Koumajou Densetsu Scarlet Symphony - Objects.png-7c06bba443304400df2d1eaff267af06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Characters/enemy/PlayStation - Castlevania Symphony of the Night - Bone Halberd.png"
-dest_files=["res://.godot/imported/PlayStation - Castlevania Symphony of the Night - Bone Halberd.png-9f46643e9b78a341568e45c503c8c3d5.ctex"]
+source_file="res://assets/tileset/PC Computer - Koumajou Densetsu Scarlet Symphony - Objects.png"
+dest_files=["res://.godot/imported/PC Computer - Koumajou Densetsu Scarlet Symphony - Objects.png-7c06bba443304400df2d1eaff267af06.ctex"]
 
 [params]
 
