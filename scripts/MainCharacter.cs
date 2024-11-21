@@ -107,8 +107,18 @@ public partial class MainCharacter : CharacterBody2D
 			animation.Play("attack2");
 		}
 		
-		if (Input.IsActionPressed("crawl")) {
+		if (Input.IsActionJustPressed("crawl")) {
 			isCrawl = true;
+			animation.Play("crawl");
+		}
+		
+		if (Input.IsActionPressed("crawl") && Input.IsActionJustPressed("attack")) {
+			animation.Play("crawlAttack");
+			if (animation.FlipH) {
+				animation.Position = new Vector2(-25.76f, 89f);
+			} else {
+				animation.Position = new Vector2(25.76f, 89f);
+			}
 		}
 		
 		if (Input.IsActionJustReleased("crawl")) {
@@ -154,14 +164,6 @@ public partial class MainCharacter : CharacterBody2D
 						takeHit(delta);
 					}
 				} 
-				else {
-					if (isAttacking) {
-						animation.Play("crawlAttack");
-					}
-					animation.Play("crawl");
-				}
-				
-				
 			}
 			if (!IsOnFloor()) {
 				Velocity = velocity;
