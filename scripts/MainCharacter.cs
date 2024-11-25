@@ -108,8 +108,10 @@ public partial class MainCharacter : CharacterBody2D
 		}
 		
 		if (Input.IsActionJustPressed("crawl")) {
-			isCrawl = true;
-			animation.Play("crawl");
+			if(!isAttacking){
+				isCrawl = true;
+				animation.Play("crawl");
+			}
 		}
 		
 		if (Input.IsActionPressed("crawl") && Input.IsActionJustPressed("attack")) {

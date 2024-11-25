@@ -43,7 +43,7 @@ public partial class Puerta : Area2D
 		var timer = new Timer(); 
 		timer.WaitTime = timerOfOpen; 
 		timer.OneShot = true; 
-		timer.Connect("timeout", this, nameof(Exited)); 
+		//timer.Connect("timeout", this, nameof(Exited)); 
 		timer.Start();
 	}
 	
@@ -55,7 +55,7 @@ public partial class Puerta : Area2D
 		var timer = new Timer(); 
 		timer.WaitTime = timerOfClose; 
 		timer.OneShot = true; 
-		timer.Connect("timeout", this, nameof(Exited)); 
+		//timer.Connect("timeout", this, nameof(Exited)); 
 		timer.Start();
 	}
 	
