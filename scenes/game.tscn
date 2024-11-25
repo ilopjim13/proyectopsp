@@ -11067,6 +11067,7 @@ shape = SubResource("RectangleShape2D_35qm6")
 
 [node name="EnemigoSprite" type="AnimatedSprite2D" parent="Enemigo"]
 texture_filter = 1
+scale = Vector2(0.54, 0.54)
 sprite_frames = SubResource("SpriteFrames_xsews")
 animation = &"idle"
 autoplay = "idle"
@@ -11075,8 +11076,8 @@ script = ExtResource("208_0bbgw")
 
 [node name="BarraVidaEnemy" type="TextureProgressBar" parent="Enemigo/EnemigoSprite"]
 anchors_preset = -1
-anchor_left = 0.02
-anchor_right = 0.2637
+anchor_left = 0.00390625
+anchor_right = 0.0515039
 offset_left = -20.0
 offset_top = -34.0
 offset_right = 1.815

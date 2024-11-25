@@ -59,21 +59,42 @@ public partial class MainCharacter : CharacterBody2D
 		// Verificar si una acción específica ha sido presionada
 		if (Input.IsActionJustPressed("attack")) 
 		{
-			float isFlipped = 1.1f;
-			//GD.Print("Fire");
-			Ataque instBullet = (Ataque) bullet.Instantiate();
-			if(animation.FlipH) isFlipped = -2f;
-			instBullet.Speed = isFlipped * BulletSpeed;
+			if (IsOnFloor()) {
+				float isFlipped = 1.1f;
+				Ataque instBullet = (Ataque) bullet.Instantiate();
+				if(animation.FlipH) isFlipped = -2f;
+				instBullet.Speed = isFlipped * BulletSpeed;
+				
+				instBullet.GlobalPosition = GlobalPosition + new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y);
+				GetTree().Root.AddChild(instBullet);
+				
+				var timer = new Timer(); 
+				timer.WaitTime = bulletLifeSpan; 
+				timer.OneShot = true; 
+				timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
+				instBullet.AddChild(timer); 
+				timer.Start();
+			} else {
+				bulletOffSet.Y = Position.Y;
+				float isFlipped = 1.1f;
+				Ataque instBullet = (Ataque) bullet.Instantiate();
+				if(animation.FlipH) isFlipped = -2f;
+				instBullet.Speed = isFlipped * BulletSpeed;
+				
+				instBullet.GlobalPosition = GlobalPosition + new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y);
+				GetTree().Root.AddChild(instBullet);
+				
+				var timer = new Timer(); 
+				timer.WaitTime = bulletLifeSpan; 
+				timer.OneShot = true; 
+				timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
+				instBullet.AddChild(timer); 
+				timer.Start();
+				bulletOffSet.Y = 83;
+			}
 			
-			instBullet.GlobalPosition = GlobalPosition + new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y);
-			GetTree().Root.AddChild(instBullet);
 
-			var timer = new Timer(); 
-			timer.WaitTime = bulletLifeSpan; 
-			timer.OneShot = true; 
-			timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
-			instBullet.AddChild(timer); 
-			timer.Start();
+			
 
 		}
 
@@ -108,10 +129,9 @@ public partial class MainCharacter : CharacterBody2D
 		}
 		
 		if (Input.IsActionJustPressed("crawl")) {
-			if(!isAttacking){
+				animation.Position = new Vector2(0, 89f);
 				isCrawl = true;
 				animation.Play("crawl");
-			}
 		}
 		
 		if (Input.IsActionPressed("crawl") && Input.IsActionJustPressed("attack")) {
