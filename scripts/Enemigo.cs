@@ -39,8 +39,8 @@ public partial class Enemigo : Area2D
 		areaAtaque = GetNode<AreaAtaque>("AreaAtaque"); 
 		areaAtaque.Connect(nameof(AreaAtaque.EnemyAttackEventHandler), new Callable(this, nameof(OnEnemyAttack))); 
 		
-		areaVision = GetNode<AreaVision>("AreaVision");
-		areaVision.Connect(nameof(AreaVision.EnemyVisionEventHandler), new Callable(this, nameof(OnBodyEnteredVision)));
+		//areaVision = GetNode<AreaVision>("AreaVision");
+		//areaVision.Connect(nameof(AreaVision.EnemyVisionEventHandler), new Callable(this, nameof(OnBodyEnteredVision)));
 		
 		attackCollision = areaAtaque.GetNode<CollisionShape2D>("CollisionAreaAtaque");
 		
@@ -64,9 +64,9 @@ public partial class Enemigo : Area2D
 				}
 				
 			} else {
-				if (isAttack) {
+				if (isAttack && !isTakeHit) {
 					animation.Play("attack");
-				} else if(isTakeHit) {
+				} else {
 					TakeHit(delta);
 				}
 				
@@ -94,13 +94,14 @@ public partial class Enemigo : Area2D
 		isInside = true;	
 	}
 	
-	public void OnBodyEnteredVision(Node2D body) {
+	public void OnVisionBodyEntered(Node2D body) {
 		GD.Print("Jugador en el campo de vision");
 		isVisible = true;
 	}
 	
 	public void OnAreaVisionBodyExited(Node2D body) {
 		isVisible = false;
+		GD.Print("ADIOOO");
 	}
 	
 	private void FollowPlayer(double delta) 

@@ -7,8 +7,11 @@ public partial class Puerta : Area2D
 	private bool isClose = false;
 	private AnimatedSprite2D animation;
 	
-	private double timerOfOpen = 12.7;
-	private double timerOfClose = 2.7;
+	private double timerOfOpen = 2.7;
+	private double timerOfClose = 5.7;
+	
+	private Timer timer1;
+	private Timer timer2;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,28 +31,10 @@ public partial class Puerta : Area2D
 	}
 	
 	public void OnBodyEntered(Node2D body) {
-		isOpen = true;
-		animation.Play("open");
-	}
-	
-	public void OnBodyExited(Node2D body) {
-		GD.Print("ADIOS");
-		var timer = new Timer(); 
-		timer.WaitTime = timerOfOpen; 
-		timer.OneShot = true; 
-		timer.Start();
-		
-		isOpen = false;
-		isClose = true;
-		animation.Play("locking");
-		GD.Print("HOLAAA");
-		
-		var timer2 = new Timer(); 
-		timer2.WaitTime = timerOfClose; 
-		timer2.OneShot = true; 
-		timer2.Start();
-		
-		isClose = false;
+		if(!isOpen) {
+			isOpen = true;
+			animation.Play("open");
+		}
 	}
 
 	

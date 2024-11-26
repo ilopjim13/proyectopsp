@@ -59,43 +59,30 @@ public partial class MainCharacter : CharacterBody2D
 		// Verificar si una acción específica ha sido presionada
 		if (Input.IsActionJustPressed("attack")) 
 		{
-			if (IsOnFloor()) {
-				float isFlipped = 1.1f;
-				Ataque instBullet = (Ataque) bullet.Instantiate();
-				if(animation.FlipH) isFlipped = -2f;
-				instBullet.Speed = isFlipped * BulletSpeed;
-				
-				instBullet.GlobalPosition = GlobalPosition + new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y);
-				GetTree().Root.AddChild(instBullet);
-				
-				var timer = new Timer(); 
-				timer.WaitTime = bulletLifeSpan; 
-				timer.OneShot = true; 
-				timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
-				instBullet.AddChild(timer); 
-				timer.Start();
+			float isFlipped = 1.1f;
+			Ataque instBullet = (Ataque) bullet.Instantiate();
+			if(animation.FlipH) isFlipped = -2f;
+			instBullet.Speed = isFlipped * BulletSpeed;
+			
+			var bulletSpawnPoint = new Node2D(); 
+			if (isCrawl) {
+				bulletSpawnPoint.Position = new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y + 12f); 
 			} else {
-				bulletOffSet.Y = Position.Y;
-				float isFlipped = 1.1f;
-				Ataque instBullet = (Ataque) bullet.Instantiate();
-				if(animation.FlipH) isFlipped = -2f;
-				instBullet.Speed = isFlipped * BulletSpeed;
-				
-				instBullet.GlobalPosition = GlobalPosition + new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y);
-				GetTree().Root.AddChild(instBullet);
-				
-				var timer = new Timer(); 
-				timer.WaitTime = bulletLifeSpan; 
-				timer.OneShot = true; 
-				timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
-				instBullet.AddChild(timer); 
-				timer.Start();
-				bulletOffSet.Y = 83;
+				bulletSpawnPoint.Position = new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y); 
 			}
 			
-
 			
-
+			AddChild(bulletSpawnPoint);
+			
+			bulletSpawnPoint.AddChild(instBullet);
+			instBullet.GlobalPosition = bulletSpawnPoint.GlobalPosition;
+			
+			var timer = new Timer(); 
+			timer.WaitTime = bulletLifeSpan; 
+			timer.OneShot = true; 
+			timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
+			instBullet.AddChild(timer); 
+			timer.Start();
 		}
 
 
@@ -125,7 +112,6 @@ public partial class MainCharacter : CharacterBody2D
 		if (Input.IsActionJustPressed("attack2") && isAttacking == false)
 		{
 			attack2();
-			animation.Play("attack2");
 		}
 		
 		if (Input.IsActionJustPressed("crawl")) {
@@ -203,6 +189,11 @@ public partial class MainCharacter : CharacterBody2D
 	
 	public void attack() {
 		isAttacking = true;
+		if (animation.FlipH) {
+			animation.Position = new Vector2(-25.76f, 89f);
+		} else {
+			animation.Position = new Vector2(25.76f, 89f);
+		}
 	}
 	public void attack2() {
 		isAttacking2 = true;
@@ -210,11 +201,6 @@ public partial class MainCharacter : CharacterBody2D
 	
 	public void attacking(double delta) {
 		if (isAttacking) {
-			if (animation.FlipH) {
-				animation.Position = new Vector2(-25.76f, 89f);
-			} else {
-				animation.Position = new Vector2(25.76f, 89f);
-			}
 			
 			actualTimerOfAttack -= delta;
 			if (actualTimerOfAttack <= 0){
@@ -248,7 +234,7 @@ public partial class MainCharacter : CharacterBody2D
 			isDeath = true;
 			
 			
-		vidaHud = GetNode<Hud>("../CanvasLayer/MarginContainer/GridContainer/BarraVida"); 
+		vidaHud = GetNode<Hud>("../CanvasLayer/BarraVida"); 
 		vidaHud.ActualizarBarraVida(Hp, MaxHp); 
 	}
 }

@@ -6,10 +6,9 @@ public partial class AreaVision : Area2D
 	[Signal]
 	public delegate void EnemyVisionEventHandler(Node body);
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Connect("body_entered", new Callable(this, nameof(OnAreaVisionBodyEntered)));
+		Connect("body_entered", new Callable(this, nameof(OnBodyEntered)));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,7 +16,7 @@ public partial class AreaVision : Area2D
 	{
 	}
 	
-	public void OnAreaVisionBodyEntered(Node body) 
+	private void OnBodyEntered(Node body) 
 	{
 		if (body is CharacterBody2D) 
 		{
@@ -25,4 +24,6 @@ public partial class AreaVision : Area2D
 			EmitSignal(nameof(EnemyVisionEventHandler), body);
 		}
 	}
+	
+
 }
