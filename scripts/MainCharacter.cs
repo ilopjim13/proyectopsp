@@ -59,30 +59,33 @@ public partial class MainCharacter : CharacterBody2D
 		// Verificar si una acción específica ha sido presionada
 		if (Input.IsActionJustPressed("attack")) 
 		{
-			float isFlipped = 1.1f;
-			Ataque instBullet = (Ataque) bullet.Instantiate();
-			if(animation.FlipH) isFlipped = -2f;
-			instBullet.Speed = isFlipped * BulletSpeed;
-			
-			var bulletSpawnPoint = new Node2D(); 
-			if (isCrawl) {
-				bulletSpawnPoint.Position = new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y + 12f); 
-			} else {
-				bulletSpawnPoint.Position = new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y); 
+			if (!isHitting) {
+				float isFlipped = 1.1f;
+				Ataque instBullet = (Ataque) bullet.Instantiate();
+				if(animation.FlipH) isFlipped = -2f;
+				instBullet.Speed = isFlipped * BulletSpeed;
+				
+				var bulletSpawnPoint = new Node2D(); 
+				if (isCrawl) {
+					bulletSpawnPoint.Position = new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y + 12f); 
+				} else {
+					bulletSpawnPoint.Position = new Vector2(bulletOffSet.X * isFlipped, bulletOffSet.Y); 
+				}
+				
+				
+				AddChild(bulletSpawnPoint);
+				
+				bulletSpawnPoint.AddChild(instBullet);
+				instBullet.GlobalPosition = bulletSpawnPoint.GlobalPosition;
+				
+				var timer = new Timer(); 
+				timer.WaitTime = bulletLifeSpan; 
+				timer.OneShot = true; 
+				timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
+				instBullet.AddChild(timer); 
+				timer.Start();
 			}
 			
-			
-			AddChild(bulletSpawnPoint);
-			
-			bulletSpawnPoint.AddChild(instBullet);
-			instBullet.GlobalPosition = bulletSpawnPoint.GlobalPosition;
-			
-			var timer = new Timer(); 
-			timer.WaitTime = bulletLifeSpan; 
-			timer.OneShot = true; 
-			timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
-			instBullet.AddChild(timer); 
-			timer.Start();
 		}
 
 
@@ -105,8 +108,12 @@ public partial class MainCharacter : CharacterBody2D
 		
 		if (Input.IsActionJustPressed("attack") && isAttacking == false)
 		{
-			attack();
-			animation.Play("attack");
+			if(!isHitting) {
+				attack();
+				animation.Play("attack");
+			}
+			
+			
 		}
 		
 		if (Input.IsActionJustPressed("attack2") && isAttacking == false)
@@ -211,6 +218,7 @@ public partial class MainCharacter : CharacterBody2D
 	}
 	
 	public void takeHit(double delta) {
+		animation.Position = new Vector2(0, 89f);
 		animation.Play("takeHit");
 		actualTimerOfHit-= delta;
 		if (actualTimerOfHit <= 0){
@@ -228,13 +236,15 @@ public partial class MainCharacter : CharacterBody2D
 	}
 	
 	public void ReceiveDamage(int damage) {
-		Hp -= damage; 
-		isHitting = true;
-		if (Hp <= 0) 
-			isDeath = true;
-			
-			
-		vidaHud = GetNode<Hud>("../CanvasLayer/BarraVida"); 
-		vidaHud.ActualizarBarraVida(Hp, MaxHp); 
+		if (!isHitting) {
+			Hp -= damage; 
+			isHitting = true;
+			if (Hp <= 0) 
+				isDeath = true;
+				
+				
+			vidaHud = GetNode<Hud>("../CanvasLayer/BarraVida"); 
+			vidaHud.ActualizarBarraVida(Hp, MaxHp); 
+		}
 	}
 }

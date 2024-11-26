@@ -35,3 +35,4 @@ position = Vector2(35, 16)
 shape = SubResource("RectangleShape2D_lh07g")
 
 [connection signal="body_entered" from="danio" to="danio" method="OnBodyEntered"]
+[connection signal="body_exited" from="danio" to="danio" method="OnBodyExited"]

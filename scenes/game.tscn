@@ -1,4 +1,4 @@
-[gd_scene load_steps=724 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=723 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Texture2D" uid="uid://c7rovsay7xhnn" path="res://assets/Background/layer_1.png" id="1_nygm4"]
@@ -218,7 +218,6 @@
 [ext_resource type="Script" path="res://scripts/KillZone.cs" id="208_r6xa7"]
 [ext_resource type="Texture2D" uid="uid://cc0cimvmdqtlc" path="res://assets/Characters/enemy/Skeleton/Take Hit.png" id="209_olhc2"]
 [ext_resource type="Script" path="res://scripts/AreaAtaque.cs" id="211_77ldk"]
-[ext_resource type="Script" path="res://scripts/AreaVision.cs" id="213_flljq"]
 [ext_resource type="Script" path="res://scripts/BarraVidaEnemy.cs" id="214_fx81p"]
 [ext_resource type="Script" path="res://scripts/Hud.cs" id="217_34csr"]
 [ext_resource type="Texture2D" uid="uid://dit3myj1ag41x" path="res://assets/Characters/mainCharacter/touhou/PC Computer - Koumajou Densetsu Scarlet Symphony - Reimu Hakurei.png" id="217_fsqfu"]
@@ -10914,7 +10913,6 @@ position = Vector2(24.5, 0)
 shape = SubResource("RectangleShape2D_flr3e")
 
 [node name="AreaVision" type="Area2D" parent="Enemigo"]
-script = ExtResource("213_flljq")
 
 [node name="CollisionAreaVision" type="CollisionShape2D" parent="Enemigo/AreaVision"]
 position = Vector2(11.25, -26)
