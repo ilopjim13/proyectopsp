@@ -1,4 +1,4 @@
-[gd_scene load_steps=726 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=725 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Texture2D" uid="uid://c7rovsay7xhnn" path="res://assets/Background/layer_1.png" id="1_nygm4"]
@@ -9776,10 +9776,6 @@ region = Rect2(450, 0, 150, 150)
 atlas = ExtResource("206_yglnc")
 region = Rect2(600, 0, 150, 150)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qokjh"]
-atlas = ExtResource("206_yglnc")
-region = Rect2(750, 0, 150, 150)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_08n7h"]
 atlas = ExtResource("207_kl0w8")
 region = Rect2(0, 0, 150, 150)
@@ -9861,9 +9857,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kxbya")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qokjh")
 }],
 "loop": true,
 "name": &"attack",
@@ -11642,8 +11635,10 @@ tile_set = SubResource("TileSet_uf5qk")
 
 [node name="Enemigo" type="Area2D" parent="."]
 position = Vector2(-385, 89)
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("165_ebjew")
-speed = 10.0
+speed = 30.0
 
 [node name="AreaAtaque" type="Area2D" parent="Enemigo"]
 script = ExtResource("211_77ldk")
@@ -11661,7 +11656,7 @@ shape = SubResource("RectangleShape2D_35qm6")
 [node name="EnemigoSprite" type="AnimatedSprite2D" parent="Enemigo"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_xsews")
-animation = &"walk"
+animation = &"attack"
 autoplay = "idle"
 script = ExtResource("208_0bbgw")
 
