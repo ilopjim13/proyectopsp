@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bchgjxxxsx6vy"
+path="res://.godot/imported/Spiritualism Corpse.mp3-2781179c3e16014d126e0e0cfeee7426.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/music/Spiritualism Corpse.mp3"
+dest_files=["res://.godot/imported/Spiritualism Corpse.mp3-2781179c3e16014d126e0e0cfeee7426.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
