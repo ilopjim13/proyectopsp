@@ -19,6 +19,7 @@ public partial class MainCharacter : CharacterBody2D
 	public bool isCrawl = false;
 	public bool isHitting = false;
 	public bool isDeath = false;
+	public bool isHit = false;
 	
 	private AnimatedSprite2D animation; 
 	
@@ -48,6 +49,7 @@ public partial class MainCharacter : CharacterBody2D
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		bullet = (PackedScene)ResourceLoader.Load("res://scenes/ataque.tscn");
 		bulletOffSet = new Vector2(35, 83);
+		AddToGroup("jugadores");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -59,7 +61,7 @@ public partial class MainCharacter : CharacterBody2D
 		// Verificar si una acción específica ha sido presionada
 		if (Input.IsActionJustPressed("attack")) 
 		{
-			if (!isHitting) {
+			if (!isHitting && !isAttacking) {
 				float isFlipped = 1.1f;
 				Ataque instBullet = (Ataque) bullet.Instantiate();
 				if(animation.FlipH) isFlipped = -2f;
@@ -84,6 +86,7 @@ public partial class MainCharacter : CharacterBody2D
 				timer.Connect("timeout", new Callable(instBullet, "queue_free")); 
 				instBullet.AddChild(timer); 
 				timer.Start();
+				
 			}
 			
 		}
@@ -95,6 +98,7 @@ public partial class MainCharacter : CharacterBody2D
 			velocity += GetGravity() * (float)delta;
 			if (!isAttacking && !isAttacking2) {
 				animation.Play("jump");
+			
 			} else {
 				animation.Play("jumpAttack");
 			}
@@ -106,7 +110,7 @@ public partial class MainCharacter : CharacterBody2D
 			velocity.Y = JumpVelocity;
 		}
 		
-		if (Input.IsActionJustPressed("attack") && isAttacking == false)
+		if (Input.IsActionJustPressed("attack") && !isAttacking && !isCrawl)
 		{
 			if(!isHitting) {
 				attack();
@@ -122,26 +126,31 @@ public partial class MainCharacter : CharacterBody2D
 		}
 		
 		if (Input.IsActionJustPressed("crawl")) {
+			if (IsOnFloor()) {
 				animation.Position = new Vector2(0, 89f);
 				isCrawl = true;
 				animation.Play("crawl");
+			}
 		}
 		
-		if (Input.IsActionPressed("crawl") && Input.IsActionJustPressed("attack")) {
-			animation.Play("crawlAttack");
-			if (animation.FlipH) {
-				animation.Position = new Vector2(-25.76f, 89f);
-			} else {
-				animation.Position = new Vector2(25.76f, 89f);
+		
+		if (Input.IsActionPressed("crawl") && Input.IsActionJustPressed("attack") && IsOnFloor()) {
+			if (!isAttacking) {
+				attack();
+				animation.Play("crawlAttack");
+				if (animation.FlipH) {
+					animation.Position = new Vector2(-26.635f, 89f);
+				} else {
+					animation.Position = new Vector2(26.635f, 89f);
+				}
 			}
+			
 		}
 		
 		if (Input.IsActionJustReleased("crawl")) {
 			isCrawl = false;
 		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_left", "ui_left");
 
 		if (!isDeath) {
@@ -170,15 +179,14 @@ public partial class MainCharacter : CharacterBody2D
 					} 
 				}
 			} else {
-				if (!isCrawl) {
-					if (isAttacking) {
-						attacking(delta);
-					} else if(isAttacking2) {
-						attacking2(delta);
-					} else if (isHitting) {
-						takeHit(delta);
-					}
-				} 
+				if (isAttacking) {
+					attacking(delta);
+				} else if(isAttacking2) {
+					attacking2(delta);
+				} else if (isHitting) {
+					takeHit(delta);
+					
+				}
 			}
 			if (!IsOnFloor()) {
 				Velocity = velocity;
@@ -188,7 +196,7 @@ public partial class MainCharacter : CharacterBody2D
 			animation.Play("death");
 			actualTimerOfDeath-= delta;
 			if (actualTimerOfDeath <= 0){
-				GetTree().ReloadCurrentScene();
+				GetTree().ChangeSceneToFile("res://scenes/gameOver.tscn");
 			}
 		}
 	}
@@ -202,6 +210,7 @@ public partial class MainCharacter : CharacterBody2D
 			animation.Position = new Vector2(25.76f, 89f);
 		}
 	}
+	
 	public void attack2() {
 		isAttacking2 = true;
 	}
@@ -219,6 +228,7 @@ public partial class MainCharacter : CharacterBody2D
 	
 	public void takeHit(double delta) {
 		animation.Position = new Vector2(0, 89f);
+		isCrawl = false; 
 		animation.Play("takeHit");
 		actualTimerOfHit-= delta;
 		if (actualTimerOfHit <= 0){
@@ -241,8 +251,6 @@ public partial class MainCharacter : CharacterBody2D
 			isHitting = true;
 			if (Hp <= 0) 
 				isDeath = true;
-				
-				
 			vidaHud = GetNode<Hud>("../CanvasLayer/BarraVida"); 
 			vidaHud.ActualizarBarraVida(Hp, MaxHp); 
 		}

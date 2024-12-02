@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://comvarehdrfgo"]
+
+[ext_resource type="Texture2D" uid="uid://br2xdqt0a0rte" path="res://assets/HUD/fondoMenu.png" id="1_2jmor"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture_filter = 1
+position = Vector2(950.379, 540)
+scale = Vector2(2.12181, 2.12181)
+texture = ExtResource("1_2jmor")

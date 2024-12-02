@@ -19,3 +19,4 @@ scale = Vector2(0.51, 0.857143)
 texture = ExtResource("2_atsod")
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -1,7 +1,7 @@
 using Godot;
 using System;
-
-public partial class Enemigo : CharacterBody2D
+/*
+public partial class Enemigo : Area2D
 {
 	[Export]
 	public float speed;
@@ -10,10 +10,6 @@ public partial class Enemigo : CharacterBody2D
 	public int Hp = 50;
 
 	public int MaxHp = 50;
-	
-	private Vector2 velocity = Vector2.Zero; 
-	
-	private float gravity = 980f;
 	
 	private AreaAtaque areaAtaque;
 	private AreaVision areaVision;
@@ -39,6 +35,7 @@ public partial class Enemigo : CharacterBody2D
 	
 	private BarraVidaEnemy vidaHud;
 	
+	private static bool isGameInstanced = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -49,35 +46,16 @@ public partial class Enemigo : CharacterBody2D
 		
 		animation = GetNode<EnemigoSprite>("EnemigoSprite");
 		
-		characterBody = GetNode<MainCharacter>("../CharacterBody2D");
+		//characterBody = GetNode<MainCharacter>("../CharacterBody2D");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _PhysicsProcess(double delta)
+	public override void _Process(double delta)
 	{
-		//character = (PackedScene)ResourceLoader.Load("res://scenes/player2.tscn");
-		//characterBody = GetNode<MainCharacter>("CharacterBody2D");
+		character = (PackedScene)ResourceLoader.Load("res://scenes/game.tscn");
+		characterInstance = character.Instantiate();
+		characterBody = characterInstance.GetNode<MainCharacter>("CharacterBody2D");
 		if (!isDeath) {
-			
-			if (!IsOnFloor()) // Si no está tocando el suelo
-			{
-				velocity += GetGravity() * (float)delta;  // La gravedad se acumula
-			}
-			else
-			{
-				velocity.Y = 0;  // Si está tocando el suelo, no cae
-			}
-			
-			// Utilizamos MoveAndCollide en lugar de MoveAndSlide 
-			KinematicCollision2D collision = MoveAndCollide(velocity * (float)delta); 
-			// Manejar la colisión si ocurre 
-			if (collision != null) { 
-			// Ejemplo: detiene el movimiento vertical al colisionar con el suelo 
-				if (collision.GetNormal().Y > 0) { 
-					velocity.Y = 0; 
-				}
-			}
-			
 			if (!isAttack && !isTakeHit) 
 			{
 				if (isVisible) {
@@ -112,31 +90,26 @@ public partial class Enemigo : CharacterBody2D
 	
 	private void OnEnemyAttack(Node body) 
 	{ 
-		if (body is MainCharacter characterBody) {
-			GD.Print("Atacando al jugador."); 
-			isAttack = true;
-			isInside = true;
-		}
-			
+		GD.Print("Atacando al jugador."); 
+		isAttack = true;
+		isInside = true;	
 	}
 	
 	public void OnVisionBodyEntered(Node2D body) {
-		if (body is MainCharacter characterBody) {
-			GD.Print("Jugador en el campo de vision");
-			isVisible = true;
-		}
-		
+		GD.Print("Jugador en el campo de vision");
+		isVisible = true;
 	}
 	
 	public void OnAreaVisionBodyExited(Node2D body) {
-		if (body is MainCharacter characterBody){
-			isVisible = false;
-		}
-		
+		isVisible = false;
+		GD.Print("ADIOOO");
 	}
 	
 	private void FollowPlayer(double delta) 
 	{ 
+		if (characterBody == null) {
+			GD.Print("NO HAY MAIN");
+		} 
 		var playerPosition = characterBody.GlobalPosition; 
 		var enemyPosition = GlobalPosition; 
 		var direction = new Vector2((playerPosition.X - enemyPosition.X), 0).Normalized();
@@ -154,13 +127,14 @@ public partial class Enemigo : CharacterBody2D
 		{ 
 			attackCollision.Position = new Vector2(Math.Abs(attackCollision.Position.X), attackCollision.Position.Y); 
 		}
-		MoveAndSlide();
+		
 	}
 
 	
 	public void OnBodyExited(Node2D body) {
 		if (body is MainCharacter) {
 			isInside = false;
+			GD.Print("ADIOS");
 		}
 	}
 
@@ -210,3 +184,4 @@ public partial class Enemigo : CharacterBody2D
 			}
 	}
 }
+*/

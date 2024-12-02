@@ -14,13 +14,14 @@ public partial class Ataque : Area2D
 	{
 	}
 	
-	public void OnAreaEntered(Area2D area) {
-		if (area is Enemigo enemigo)
+	public void OnBodyEntered(Node2D body) {
+		if (body is Enemigo enemigo)
 		{
 			enemigo.ReceiveDamage(15);
-			GD.Print("DUELE");
 		} 
 	}
+	
+	
 	
 }
 

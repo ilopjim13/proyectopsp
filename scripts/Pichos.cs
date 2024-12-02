@@ -27,7 +27,6 @@ public partial class Pichos : Area2D
 
 	
 	public void OnBodyEntered(Node2D body) {
-		GD.Print("hola");
 		if (body is MainCharacter character) {
 			isInside = true;
 			characterBody = character;

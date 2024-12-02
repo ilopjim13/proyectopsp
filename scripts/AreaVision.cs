@@ -3,7 +3,6 @@ using System;
 
 public partial class AreaVision : Area2D
 {
-	
 	public override void _Ready()
 	{
 	}
