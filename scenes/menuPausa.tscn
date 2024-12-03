@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd84qrotk2lpn"]
+
+[ext_resource type="Script" path="res://menu_pausa.gd" id="1_cfpjt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6nx83"]
+font_size = 30
+shadow_size = 6
+
+[node name="MenuPausa" type="Node"]
+process_mode = 3
+script = ExtResource("1_cfpjt")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+offset_right = 1930.0
+offset_bottom = 1086.0
+color = Color(0, 0, 0, 0.427451)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -65.5
+offset_right = 47.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+alignment = 1
+
+[node name="Label2" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Pause"
+label_settings = SubResource("LabelSettings_6nx83")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Botones" type="VBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Continuar" type="Button" parent="Control/VBoxContainer/Botones"]
+layout_mode = 2
+text = "Continuar"
+
+[node name="Salir" type="Button" parent="Control/VBoxContainer/Botones"]
+layout_mode = 2
+text = "Salilr"
+
+[connection signal="pressed" from="Control/VBoxContainer/Botones/Continuar" to="." method="_on_continuar_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Botones/Salir" to="." method="_on_salir_pressed"]
