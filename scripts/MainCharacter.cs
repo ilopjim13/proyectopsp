@@ -41,6 +41,9 @@ public partial class MainCharacter : CharacterBody2D
 	
 	private double actualTimerOfDeath = 1.55;
 	
+	private AudioStreamPlayer2D attackSound;
+	private AudioStreamPlayer2D hurtSound;
+	
 	public float BulletSpeed;
 	
 	private Hud vidaHud;
@@ -50,6 +53,8 @@ public partial class MainCharacter : CharacterBody2D
 		bullet = (PackedScene)ResourceLoader.Load("res://scenes/ataque.tscn");
 		bulletOffSet = new Vector2(35, 83);
 		AddToGroup("jugadores");
+		attackSound = GetNode<AudioStreamPlayer2D>("AttackSound");
+		hurtSound = GetNode<AudioStreamPlayer2D>("HurtSound");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -204,6 +209,7 @@ public partial class MainCharacter : CharacterBody2D
 	
 	public void attack() {
 		isAttacking = true;
+		attackSound.Play();
 		if (animation.FlipH) {
 			animation.Position = new Vector2(-25.76f, 89f);
 		} else {
@@ -227,6 +233,7 @@ public partial class MainCharacter : CharacterBody2D
 	}
 	
 	public void takeHit(double delta) {
+		hurtSound.Play();
 		animation.Position = new Vector2(0, 89f);
 		isCrawl = false; 
 		animation.Play("takeHit");

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Menu.cs" id="1_8ed8p"]
 [ext_resource type="PackedScene" uid="uid://comvarehdrfgo" path="res://scenes/fondoMenu.tscn" id="1_pyqom"]
-[ext_resource type="Texture2D" uid="uid://cywkwb6kcc56p" path="res://assets/HUD/image(1).png" id="1_u4w00"]
+[ext_resource type="Texture2D" uid="uid://cywkwb6kcc56p" path="res://assets/HUD/fondos/image(1).png" id="1_u4w00"]
 [ext_resource type="AudioStream" uid="uid://drr4qyd040q6h" path="res://assets/sound/music/Prorogue.mp3" id="4_rpjgy"]
 
 [node name="Menu" type="Control"]

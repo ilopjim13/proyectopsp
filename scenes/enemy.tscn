@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://cc0cimvmdqtlc" path="res://assets/Characters/enemy/Skeleton/Take Hit.png" id="5_jkufd"]
 [ext_resource type="Texture2D" uid="uid://cgsisxxw220w6" path="res://assets/Characters/enemy/Skeleton/Walk.png" id="6_unqps"]
 [ext_resource type="Script" path="res://scripts/EnemigoSprite.cs" id="7_snxww"]
-[ext_resource type="Texture2D" uid="uid://2f73uu6dickw" path="res://assets/HUD/bar_background.png" id="8_5nl1d"]
-[ext_resource type="Texture2D" uid="uid://hri8quarvtxd" path="res://assets/HUD/health_bar.png" id="9_j8pgi"]
-[ext_resource type="Texture2D" uid="uid://djjre771g6oaj" path="res://assets/HUD/bar.png" id="10_wqrkt"]
+[ext_resource type="Texture2D" uid="uid://2f73uu6dickw" path="res://assets/HUD/personaje/bar_background.png" id="8_5nl1d"]
+[ext_resource type="Texture2D" uid="uid://hri8quarvtxd" path="res://assets/HUD/personaje/health_bar.png" id="9_j8pgi"]
+[ext_resource type="Texture2D" uid="uid://djjre771g6oaj" path="res://assets/HUD/personaje/bar.png" id="10_wqrkt"]
 [ext_resource type="Script" path="res://scripts/AreaAtaque.cs" id="11_o0jbj"]
 [ext_resource type="Script" path="res://scripts/BarraVidaEnemy.cs" id="11_u7rsp"]
 

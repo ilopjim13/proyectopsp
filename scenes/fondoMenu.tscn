@@ -1,14 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://comvarehdrfgo"]
+[gd_scene load_steps=6 format=3 uid="uid://comvarehdrfgo"]
 
-[ext_resource type="Texture2D" uid="uid://br2xdqt0a0rte" path="res://assets/HUD/fondoMenu.png" id="1_2jmor"]
+[ext_resource type="Texture2D" uid="uid://br2xdqt0a0rte" path="res://assets/HUD/fondos/fondoMenu.png" id="1_2jmor"]
+[ext_resource type="Script" path="res://scripts/fondo_menu.gd" id="1_bhkbp"]
+[ext_resource type="Texture2D" uid="uid://cka4tm58iomqe" path="res://assets/HUD/fondos/s08o10.png" id="2_2l5xa"]
+[ext_resource type="Texture2D" uid="uid://tsj8vgk6higb" path="res://assets/HUD/fondos/yukariEyes.png" id="2_bootj"]
+[ext_resource type="Texture2D" uid="uid://ce1o30dsqx4fg" path="res://assets/HUD/fondos/yukari.png" id="3_oy120"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource("1_bhkbp")
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-texture_filter = 1
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(950.379, 540)
 scale = Vector2(2.12181, 2.12181)
 texture = ExtResource("1_2jmor")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+texture_filter = 1
+motion_mirroring = Vector2(5120, 0)
+
+[node name="S08o10" type="Sprite2D" parent="ParallaxLayer"]
+texture_repeat = 3
+position = Vector2(972, 1037)
+scale = Vector2(3.81641, 3.79688)
+texture = ExtResource("2_2l5xa")
+region_enabled = true
+region_rect = Rect2(0, 0, 5120, 260)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(98, 88)
+rotation = 0.97308
+scale = Vector2(0.503907, 0.503907)
+texture = ExtResource("3_oy120")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(116, 107)
+rotation = 3.11596
+scale = Vector2(0.362305, 0.362305)
+texture = ExtResource("2_bootj")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D2"]
+position = Vector2(-33.8112, 134.555)
+scale = Vector2(0.362305, 0.362305)
+texture = ExtResource("2_bootj")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprite2D2"]
+position = Vector2(181.477, -61.4123)
+rotation = -1.5177
+scale = Vector2(0.470377, 0.470377)
+texture = ExtResource("2_bootj")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1763, 903)
+rotation = 2.6168
+scale = Vector2(0.35272, 0.35272)
+texture = ExtResource("2_bootj")

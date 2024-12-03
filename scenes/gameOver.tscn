@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://tk2isvrsptq7"]
 
 [ext_resource type="Script" path="res://scripts/Menu.cs" id="1_2shpk"]
-[ext_resource type="Texture2D" uid="uid://hwv2locvqrwv" path="res://assets/HUD/gameOver.png" id="2_gjg01"]
+[ext_resource type="Texture2D" uid="uid://hwv2locvqrwv" path="res://assets/HUD/fondos/gameOver.png" id="2_gjg01"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3

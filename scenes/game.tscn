@@ -1,4 +1,4 @@
-[gd_scene load_steps=728 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=739 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_c6vm5"]
@@ -216,22 +216,27 @@
 [ext_resource type="Texture2D" uid="uid://dit3myj1ag41x" path="res://assets/Characters/mainCharacter/touhou/PC Computer - Koumajou Densetsu Scarlet Symphony - Reimu Hakurei.png" id="217_fsqfu"]
 [ext_resource type="PackedScene" uid="uid://c6n10hxk6b1e3" path="res://scenes/pincho.tscn" id="221_3cnv0"]
 [ext_resource type="Script" path="res://scripts/Enemigo.cs" id="221_7jfl5"]
+[ext_resource type="Texture2D" uid="uid://eah6xo6g61nr" path="res://assets/Characters/mainCharacter/touhou/death.png" id="221_nrrr5"]
 [ext_resource type="Script" path="res://scripts/AreaAtaque.cs" id="222_ot3mg"]
 [ext_resource type="Texture2D" uid="uid://cffe2mmsfnr0j" path="res://assets/Characters/enemy/Skeleton/Attack3.png" id="223_jp227"]
 [ext_resource type="Texture2D" uid="uid://4pliftj8wfgm" path="res://assets/Characters/enemy/Skeleton/Death.png" id="224_gl8jk"]
 [ext_resource type="Texture2D" uid="uid://68s2apbj0t57" path="res://assets/Characters/enemy/Skeleton/Idle.png" id="225_xrkpb"]
 [ext_resource type="Texture2D" uid="uid://cc0cimvmdqtlc" path="res://assets/Characters/enemy/Skeleton/Take Hit.png" id="226_4dj53"]
-[ext_resource type="Texture2D" uid="uid://bfd67mgaf5opl" path="res://assets/HUD/vidaFONDO.png" id="226_c1w3g"]
-[ext_resource type="Texture2D" uid="uid://c21g5s8spxdrt" path="res://assets/HUD/barraVida.png" id="227_6rgu3"]
+[ext_resource type="Texture2D" uid="uid://bfd67mgaf5opl" path="res://assets/HUD/personaje/vidaFONDO.png" id="226_c1w3g"]
+[ext_resource type="AudioStream" uid="uid://bw6e2bn5msbuo" path="res://assets/sound/armsSound/whip-crack-swish-101456.mp3" id="226_pvcjo"]
+[ext_resource type="Texture2D" uid="uid://c21g5s8spxdrt" path="res://assets/HUD/personaje/barraVida.png" id="227_6rgu3"]
+[ext_resource type="AudioStream" uid="uid://d1ryuni2ldsrc" path="res://assets/sound/ow-38861_fFEE3bMm.mp3" id="227_7x52v"]
 [ext_resource type="Texture2D" uid="uid://cgsisxxw220w6" path="res://assets/Characters/enemy/Skeleton/Walk.png" id="227_gi301"]
-[ext_resource type="Texture2D" uid="uid://t1xf3q0lom5d" path="res://assets/HUD/hudVida.png" id="228_61uc6"]
+[ext_resource type="Texture2D" uid="uid://t1xf3q0lom5d" path="res://assets/HUD/personaje/hudVida.png" id="228_61uc6"]
 [ext_resource type="Script" path="res://scripts/EnemigoSprite.cs" id="228_xaaic"]
-[ext_resource type="Texture2D" uid="uid://2f73uu6dickw" path="res://assets/HUD/bar_background.png" id="229_5kq0c"]
-[ext_resource type="Texture2D" uid="uid://hri8quarvtxd" path="res://assets/HUD/health_bar.png" id="230_5ej6w"]
-[ext_resource type="Texture2D" uid="uid://qh5bmcgaa2po" path="res://assets/HUD/avatar.png" id="230_iduqi"]
+[ext_resource type="Texture2D" uid="uid://2f73uu6dickw" path="res://assets/HUD/personaje/bar_background.png" id="229_5kq0c"]
+[ext_resource type="Texture2D" uid="uid://hri8quarvtxd" path="res://assets/HUD/personaje/health_bar.png" id="230_5ej6w"]
+[ext_resource type="Texture2D" uid="uid://qh5bmcgaa2po" path="res://assets/HUD/personaje/avatar.png" id="230_iduqi"]
 [ext_resource type="Script" path="res://scripts/BarraVidaEnemy.cs" id="231_3oaie"]
-[ext_resource type="Texture2D" uid="uid://djjre771g6oaj" path="res://assets/HUD/bar.png" id="232_ef4xe"]
+[ext_resource type="Texture2D" uid="uid://djjre771g6oaj" path="res://assets/HUD/personaje/bar.png" id="232_ef4xe"]
 [ext_resource type="PackedScene" uid="uid://bmfjc4ip1u6cl" path="res://scenes/puerta.tscn" id="233_8k2yv"]
+[ext_resource type="AudioStream" uid="uid://bchgjxxxsx6vy" path="res://assets/sound/music/Spiritualism Corpse.mp3" id="235_27513"]
+[ext_resource type="PackedScene" uid="uid://dd84qrotk2lpn" path="res://scenes/menuPausa.tscn" id="236_n2bs4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_80n27"]
 texture = ExtResource("1_nygm4")
@@ -10192,6 +10197,30 @@ region = Rect2(256, 1344, 128, 64)
 atlas = ExtResource("217_fsqfu")
 region = Rect2(256, 1344, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnmse"]
+atlas = ExtResource("217_fsqfu")
+region = Rect2(256, 1408, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy4d3"]
+atlas = ExtResource("221_nrrr5")
+region = Rect2(0, 0, 64, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdnlu"]
+atlas = ExtResource("221_nrrr5")
+region = Rect2(64, 0, 64, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktax7"]
+atlas = ExtResource("221_nrrr5")
+region = Rect2(128, 0, 64, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsuuj"]
+atlas = ExtResource("221_nrrr5")
+region = Rect2(192, 0, 64, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyvga"]
+atlas = ExtResource("221_nrrr5")
+region = Rect2(256, 0, 64, 63)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgssq"]
 atlas = ExtResource("205_wwe1k")
 region = Rect2(0, 0, 180, 180)
@@ -11046,6 +11075,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jnmse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy4d3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdnlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktax7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsuuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyvga")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pgssq")
 }, {
 "duration": 1.0,
@@ -11079,7 +11134,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hv7ht")
 }],
 "loop": false,
-"name": &"death",
+"name": &"death2",
 "speed": 7.0
 }, {
 "frames": [{
@@ -11721,8 +11776,9 @@ texture_filter = 1
 position = Vector2(0, 89)
 scale = Vector2(0.833333, 0.833333)
 sprite_frames = SubResource("SpriteFrames_nd7ej")
-animation = &"crawlAttack"
+animation = &"death"
 autoplay = "idle"
+frame_progress = 0.144625
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 95)
@@ -11732,13 +11788,20 @@ shape = SubResource("CapsuleShape2D_im2ip")
 position = Vector2(15, 36)
 rotation = -1.56261
 scale = Vector2(0.00141435, 13.5512)
-zoom = Vector2(2.995, 2.995)
+zoom = Vector2(2, 2)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_left_margin = 0.0
 drag_top_margin = 0.0
 drag_right_margin = 0.0
 drag_bottom_margin = 0.0
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("226_pvcjo")
+volume_db = -0.29
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("227_7x52v")
 
 [node name="killzone" type="Area2D" parent="."]
 position = Vector2(0, 32)
@@ -11749,6 +11812,8 @@ position = Vector2(24, 47)
 shape = SubResource("WorldBoundaryShape2D_mb0sm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MenuPausa" parent="CanvasLayer" instance=ExtResource("236_n2bs4")]
 
 [node name="BarraVida" type="TextureProgressBar" parent="CanvasLayer"]
 offset_left = 160.0
@@ -11775,6 +11840,11 @@ texture = ExtResource("230_iduqi")
 
 [node name="Puerta" parent="." instance=ExtResource("233_8k2yv")]
 position = Vector2(461, -131)
+
+[node name="BackgroundSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("235_27513")
+volume_db = -3.961
+autoplay = true
 
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo" method="OnEnemyAttack"]
 [connection signal="body_exited" from="Enemigo/AreaAtaque" to="Enemigo" method="OnBodyExited"]
