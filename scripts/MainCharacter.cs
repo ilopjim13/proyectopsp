@@ -39,10 +39,11 @@ public partial class MainCharacter : CharacterBody2D
 	private double timerOfHit = 0.4;
 	private double actualTimerOfHit = 0.4;
 	
-	private double actualTimerOfDeath = 1.55;
+	private double actualTimerOfDeath = 1.35;
 	
 	private AudioStreamPlayer2D attackSound;
 	private AudioStreamPlayer2D hurtSound;
+	private CollisionShape2D collision;
 	
 	public float BulletSpeed;
 	
@@ -52,9 +53,9 @@ public partial class MainCharacter : CharacterBody2D
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		bullet = (PackedScene)ResourceLoader.Load("res://scenes/ataque.tscn");
 		bulletOffSet = new Vector2(35, 83);
-		AddToGroup("jugadores");
 		attackSound = GetNode<AudioStreamPlayer2D>("AttackSound");
 		hurtSound = GetNode<AudioStreamPlayer2D>("HurtSound");
+		collision = GetNode<CollisionShape2D>("CollisionShape2D");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -135,6 +136,7 @@ public partial class MainCharacter : CharacterBody2D
 				animation.Position = new Vector2(0, 89f);
 				isCrawl = true;
 				animation.Play("crawl");
+				collision.Position = new Vector2(0, 105.53f);
 			}
 		}
 		
@@ -154,6 +156,7 @@ public partial class MainCharacter : CharacterBody2D
 		
 		if (Input.IsActionJustReleased("crawl")) {
 			isCrawl = false;
+			collision.Position = new Vector2(0, 95f);
 		}
 
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_left", "ui_left");

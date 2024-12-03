@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dbodc1kifcf51"]
+[gd_scene load_steps=11 format=4 uid="uid://dbodc1kifcf51"]
 
 [ext_resource type="Texture2D" uid="uid://doxvyay7k4284" path="res://assets/touhou/mp09b.png" id="1_ka1am"]
 [ext_resource type="Texture2D" uid="uid://b87p23hxxdfrh" path="res://assets/touhou/mp08c.png" id="2_7ui5b"]
@@ -547,6 +547,8 @@ texture = ExtResource("3_w25od")
 [sub_resource type="TileSet" id="TileSet_bmgft"]
 sources/0 = SubResource("TileSetAtlasSource_b4oib")
 
+[sub_resource type="TileSet" id="TileSet_bfwyv"]
+
 [node name="Fondo" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -557,5 +559,8 @@ tile_set = SubResource("TileSet_imhfx")
 tile_set = SubResource("TileSet_uxuru")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAATAAsAAAAEAAMAAAAVAAsAAAAGAAMAAAAXAAgAAAAEAAEAAAAXAAkAAAAEAAIAAAAXAAoAAAAEAAMAAAAYAAcAAAAFAAAAAAAYAAgAAAAFAAEAAAAYAAkAAAAFAAIAAAAYAAoAAAAFAAMAAAAZAAgAAAAGAAEAAAAZAAkAAAAGAAIAAAAZAAoAAAAGAAMAAAAOAAsAAAAAAAAAAAAOAAwAAAAAAAEAAAAPAAsAAAABAAAAAAAPAAwAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAATAAsAAAAGAA0AAAAVAAsAAAAGAAMAAAAXAAgAAAAEAAEAAAAXAAkAAAAEAAIAAAAXAAoAAAAEAAMAAAAYAAcAAAAFAAAAAAAYAAgAAAAFAAEAAAAYAAkAAAAFAAIAAAAYAAoAAAAFAAMAAAAZAAgAAAAGAAEAAAAZAAkAAAAGAAIAAAAZAAoAAAAGAAMAAAAOAAsAAAAAAAAAAAAOAAwAAAAAAAEAAAAPAAsAAAABAAAAAAAPAAwAAAABAAEAAAASAAsAAAAFAA0AAAASAAwAAAAFAA4AAAASAA0AAAAFAA8AAAATAAwAAAAGAA4AAAATAA0AAAAGAA8AAAAUAAsAAAAHAA0AAAAUAAwAAAAHAA4AAAAUAA0AAAAHAA8AAAA=")
 tile_set = SubResource("TileSet_bmgft")
+
+[node name="suelo" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_bfwyv")

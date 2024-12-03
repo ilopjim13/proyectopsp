@@ -11670,7 +11670,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_im2ip"]
-radius = 15.0
+radius = 11.0
 height = 38.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mb0sm"]
@@ -11718,10 +11718,12 @@ tile_set = SubResource("TileSet_uf5qk")
 position = Vector2(-421, 63)
 collision_layer = 7
 collision_mask = 7
+floor_constant_speed = true
 script = ExtResource("221_7jfl5")
 speed = 50.0
 
 [node name="AreaAtaque" type="Area2D" parent="Enemigo"]
+position = Vector2(-11, -1)
 script = ExtResource("222_ot3mg")
 
 [node name="CollisionAreaAtaque" type="CollisionShape2D" parent="Enemigo/AreaAtaque"]
@@ -11765,8 +11767,61 @@ texture = ExtResource("232_ef4xe")
 position = Vector2(3, 0)
 shape = SubResource("CapsuleShape2D_nvgf4")
 
+[node name="Enemigo2" type="CharacterBody2D" parent="."]
+position = Vector2(679, -142)
+collision_layer = 7
+collision_mask = 7
+floor_constant_speed = true
+script = ExtResource("221_7jfl5")
+speed = 50.0
+
+[node name="AreaAtaque" type="Area2D" parent="Enemigo2"]
+script = ExtResource("222_ot3mg")
+
+[node name="CollisionAreaAtaque" type="CollisionShape2D" parent="Enemigo2/AreaAtaque"]
+position = Vector2(25, 1)
+shape = SubResource("RectangleShape2D_un75o")
+
+[node name="AreaVision" type="Area2D" parent="Enemigo2"]
+
+[node name="CollisionAreaVision" type="CollisionShape2D" parent="Enemigo2/AreaVision"]
+position = Vector2(1, -26)
+shape = SubResource("RectangleShape2D_ck18u")
+
+[node name="EnemigoSprite" type="AnimatedSprite2D" parent="Enemigo2"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_5la8y")
+animation = &"attack"
+autoplay = "idle"
+script = ExtResource("228_xaaic")
+
+[node name="BarraVidaEnemy" type="TextureProgressBar" parent="Enemigo2/EnemigoSprite"]
+anchors_preset = -1
+anchor_right = 0.0879
+offset_left = -20.0
+offset_top = -34.0
+offset_right = 1.815
+offset_bottom = -31.0
+nine_patch_stretch = true
+texture_under = ExtResource("229_5kq0c")
+texture_progress = ExtResource("230_5ej6w")
+script = ExtResource("231_3oaie")
+metadata/_edit_use_anchors_ = true
+
+[node name="Bar" type="Sprite2D" parent="Enemigo2/EnemigoSprite"]
+texture_filter = 1
+position = Vector2(-2.50315, -32.7496)
+scale = Vector2(0.346292, 0.346358)
+skew = 0.0291611
+texture = ExtResource("232_ef4xe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo2"]
+position = Vector2(3, 0)
+shape = SubResource("CapsuleShape2D_nvgf4")
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 collision_mask = 7
+floor_constant_speed = true
 script = ExtResource("158_b8i53")
 Speed = 200.0
 JumpVelocity = -300.0
@@ -11776,9 +11831,8 @@ texture_filter = 1
 position = Vector2(0, 89)
 scale = Vector2(0.833333, 0.833333)
 sprite_frames = SubResource("SpriteFrames_nd7ej")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.144625
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 95)
@@ -11851,4 +11905,9 @@ autoplay = true
 [connection signal="body_entered" from="Enemigo/AreaVision" to="Enemigo" method="OnVisionBodyEntered"]
 [connection signal="body_exited" from="Enemigo/AreaVision" to="Enemigo" method="OnAreaVisionBodyExited"]
 [connection signal="animation_looped" from="Enemigo/EnemigoSprite" to="Enemigo" method="OnAnimationLooped"]
+[connection signal="body_entered" from="Enemigo2/AreaAtaque" to="Enemigo2" method="OnEnemyAttack"]
+[connection signal="body_exited" from="Enemigo2/AreaAtaque" to="Enemigo2" method="OnBodyExited"]
+[connection signal="body_entered" from="Enemigo2/AreaVision" to="Enemigo2" method="OnVisionBodyEntered"]
+[connection signal="body_exited" from="Enemigo2/AreaVision" to="Enemigo2" method="OnAreaVisionBodyExited"]
+[connection signal="animation_looped" from="Enemigo2/EnemigoSprite" to="Enemigo2" method="OnAnimationLooped"]
 [connection signal="body_entered" from="killzone" to="killzone" method="onBodyEntered"]

@@ -173,7 +173,7 @@ public partial class Enemigo : CharacterBody2D
 			isTakeHit = true;
 		}
 		
-		vidaHud = GetNode<BarraVidaEnemy>("../Enemigo/EnemigoSprite/BarraVidaEnemy"); 
+		vidaHud = GetNode<BarraVidaEnemy>("EnemigoSprite/BarraVidaEnemy"); 
 		if(vidaHud == null) {
 		}
 		vidaHud.ActualizarBarraVida(Hp, MaxHp); 
