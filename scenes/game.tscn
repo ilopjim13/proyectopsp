@@ -9781,7 +9781,7 @@ sources/121 = SubResource("TileSetAtlasSource_kdw4m")
 sources/122 = SubResource("TileSetAtlasSource_23vww")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un75o"]
-size = Vector2(49, 23)
+size = Vector2(35.5, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ck18u"]
 size = Vector2(302.5, 103)
@@ -10072,12 +10072,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvgf4"]
-radius = 17.0
-height = 52.0
+radius = 9.0
+height = 50.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5wahb"]
-radius = 20.0
-height = 56.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0keqw"]
+size = Vector2(21, 52)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vq3pb"]
 atlas = ExtResource("217_fsqfu")
@@ -11849,11 +11848,11 @@ script = ExtResource("221_7jfl5")
 speed = 50.0
 
 [node name="AreaAtaque" type="Area2D" parent="Enemigo"]
-position = Vector2(-11, -1)
+position = Vector2(3, 0)
 script = ExtResource("222_ot3mg")
 
 [node name="CollisionAreaAtaque" type="CollisionShape2D" parent="Enemigo/AreaAtaque"]
-position = Vector2(25, 1)
+position = Vector2(15.25, 0)
 shape = SubResource("RectangleShape2D_un75o")
 
 [node name="AreaVision" type="Area2D" parent="Enemigo"]
@@ -11892,14 +11891,17 @@ skew = 0.0291611
 texture = ExtResource("232_ef4xe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo"]
-position = Vector2(3, 0)
+position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_nvgf4")
 
 [node name="bodyEnemigo" type="Area2D" parent="Enemigo"]
+position = Vector2(0, -3.8147e-06)
+scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo/bodyEnemigo"]
-position = Vector2(3, -2)
-shape = SubResource("CapsuleShape2D_5wahb")
+position = Vector2(1.5, -0.999996)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_0keqw")
 
 [node name="Enemigo2" type="CharacterBody2D" parent="."]
 position = Vector2(679, -142)
@@ -11958,7 +11960,8 @@ collision_mask = 7
 floor_constant_speed = true
 script = ExtResource("158_b8i53")
 Speed = 200.0
-JumpVelocity = -300.0
+JumpVelocity = -350.0
+pushForce = -350.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
@@ -11990,10 +11993,6 @@ volume_db = -0.29
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("227_7x52v")
-
-[node name="pushTimer" type="Timer" parent="CharacterBody2D"]
-wait_time = 0.2
-one_shot = true
 
 [node name="killzone" type="Area2D" parent="."]
 position = Vector2(0, 32)
@@ -12049,5 +12048,4 @@ autoplay = true
 [connection signal="body_entered" from="Enemigo2/AreaVision" to="Enemigo2" method="OnVisionBodyEntered"]
 [connection signal="body_exited" from="Enemigo2/AreaVision" to="Enemigo2" method="OnAreaVisionBodyExited"]
 [connection signal="animation_looped" from="Enemigo2/EnemigoSprite" to="Enemigo2" method="OnAnimationLooped"]
-[connection signal="timeout" from="CharacterBody2D/pushTimer" to="." method="OnPushTimerTimeout"]
 [connection signal="body_entered" from="killzone" to="killzone" method="onBodyEntered"]

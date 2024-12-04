@@ -5,25 +5,24 @@ public partial class Enemigo : CharacterBody2D
 {
 	[Export]
 	public float speed;
-
 	[Export]
-	public int Hp = 50;
-
 	public int MaxHp = 50;
-	
-	private Vector2 velocity = Vector2.Zero; 
-	
+	public int Hp = 50;
 	private float gravity = 980f;
+	private Vector2 velocity = Vector2.Zero; 
 	
 	private AreaAtaque areaAtaque;
 	private AreaVision areaVision;
+	private CollisionShape2D attackCollision;
+	private AnimatedSprite2D animation;
+	private MainCharacter characterBody;
+	private PackedScene character;
+	private Node characterInstance;
+	private BarraVidaEnemy vidaHud;
 	
 	private double actualTimerOfHit = 0.7;
 	private double actualTimerOfDeath = 0.7;
 	private double timerOfHit = 0.7;
-	
-	private CollisionShape2D attackCollision;
-	private AnimatedSprite2D animation;
 	
 	private bool isAttack = false;
 	private bool canAttack = true;
@@ -32,23 +31,12 @@ public partial class Enemigo : CharacterBody2D
 	private bool isDeath = false;
 	private bool isTakeHit = false;
 	
-	private MainCharacter characterBody;
-	
-	private PackedScene character;
-	private Node characterInstance;
-	
-	private BarraVidaEnemy vidaHud;
-	
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		areaAtaque = GetNode<AreaAtaque>("AreaAtaque"); 
-		
 		attackCollision = areaAtaque.GetNode<CollisionShape2D>("CollisionAreaAtaque");
-		
 		animation = GetNode<EnemigoSprite>("EnemigoSprite");
-		
 		characterBody = GetNode<MainCharacter>("../CharacterBody2D");
 	}
 
@@ -78,6 +66,10 @@ public partial class Enemigo : CharacterBody2D
 				}
 			}
 			
+			if (isVisible) {
+				FollowPlayer(delta);
+			}
+			
 			if (!isAttack && !isTakeHit) 
 			{
 				if (isVisible) {
@@ -85,18 +77,12 @@ public partial class Enemigo : CharacterBody2D
 				} else {
 					animation.Play("idle");
 				}
-				
 			} else {
 				if (isAttack && !isTakeHit) {
 					animation.Play("attack");
 				} else {
 					TakeHit(delta);
 				}
-				
-			}
-			
-			if (isVisible) {
-				FollowPlayer(delta);
 			}
 		} else {
 			animation.Play("death");
@@ -125,14 +111,12 @@ public partial class Enemigo : CharacterBody2D
 			GD.Print("Jugador en el campo de vision");
 			isVisible = true;
 		}
-		
 	}
 	
 	public void OnAreaVisionBodyExited(Node2D body) {
 		if (body is MainCharacter characterBody){
 			isVisible = false;
 		}
-		
 	}
 	
 	private void FollowPlayer(double delta) 
@@ -148,12 +132,14 @@ public partial class Enemigo : CharacterBody2D
 		
 		if (animation.FlipH) 
 		{ 
-			attackCollision.Position = new Vector2(Math.Abs(attackCollision.Position.X) * -1, attackCollision.Position.Y); 
-		} 
-		else 
+			animation.Offset = new Vector2(-37.415f, 0);
+			attackCollision.Position = new Vector2(Math.Abs(attackCollision.Position.X) * -1f, attackCollision.Position.Y); 
+		} else 
 		{ 
+			animation.Offset = new Vector2(0, 0);
 			attackCollision.Position = new Vector2(Math.Abs(attackCollision.Position.X), attackCollision.Position.Y); 
 		}
+		
 		MoveAndSlide();
 	}
 
@@ -172,12 +158,10 @@ public partial class Enemigo : CharacterBody2D
 			GD.Print(Hp);
 			isTakeHit = true;
 		}
-		
 		vidaHud = GetNode<BarraVidaEnemy>("EnemigoSprite/BarraVidaEnemy"); 
 		if(vidaHud == null) {
 		}
 		vidaHud.ActualizarBarraVida(Hp, MaxHp); 
-		
 	}
 	
 	public void TakeHit(double delta) {
@@ -198,21 +182,27 @@ public partial class Enemigo : CharacterBody2D
 			canAttack = true; 
 			isAttack = true;
 			GD.Print($"El nodo characterBody es de tipo: {characterBody.GetType()}");
-			characterBody.ReceiveDamage(5); 
+			if (!characterBody.isPushed) {
+				characterBody.ReceiveDamage(5); 
+			}
+			
 		}
 	}
 	
 	public void OnBodyEnemigoBodyEntered(Node body) {
 		if (body is MainCharacter character) {
-			character.CollisionEnemy(character.GlobalPosition.DirectionTo(GlobalPosition));
+			if (!animation.FlipH) {
+				character.CollisionEnemy(new Vector2(-1,1));
+			} else {
+				character.CollisionEnemy(new Vector2(1,1));
+			}
 		}
 	}
 
-
 	public void Eliminated(double delta) {
 		actualTimerOfDeath-= delta;
-			if (actualTimerOfDeath <= 0){
-				QueueFree();
-			}
+		if (actualTimerOfDeath <= 0){
+			QueueFree();
+		}
 	}
 }

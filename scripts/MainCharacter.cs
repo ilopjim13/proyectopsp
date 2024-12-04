@@ -13,7 +13,8 @@ public partial class MainCharacter : CharacterBody2D
 	[Export]
 	public float bulletSpeed = 200;
 	
-	public Timer pushTimer;
+	[Export]
+	public float pushForce = -150;
 	
 	private bool isAttacking = false;
 	private bool isAttacking2 = false;
@@ -31,7 +32,7 @@ public partial class MainCharacter : CharacterBody2D
 	public int MaxHp = 100;
 	public int Hp = 100;
 	
-	public float pushForce = -150;
+	
 	public int pushDamage = 5;
 	
 	private double timerOfAttack = 0.6;
@@ -41,6 +42,9 @@ public partial class MainCharacter : CharacterBody2D
 	
 	private double timerOfAttack2 = 0.6;
 	private double actualTimerOfAttack2 = 0.6;
+	
+	private double timerOfPush = 0.4;
+	private double actualTimerOfPush = 0.4;
 
 	private double timerOfHit = 0.4;
 	private double actualTimerOfHit = 0.4;
@@ -56,7 +60,6 @@ public partial class MainCharacter : CharacterBody2D
 	private Hud vidaHud;
 	
 	public override void _Ready() {
-		pushTimer = GetNode<Timer>("PushTimer");
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		bullet = (PackedScene)ResourceLoader.Load("res://scenes/ataque.tscn");
 		bulletOffSet = new Vector2(35, 83);
@@ -77,7 +80,6 @@ public partial class MainCharacter : CharacterBody2D
 				float isFlipped = 1.1f;
 				Ataque instBullet = (Ataque) bullet.Instantiate();
 				if(animation.FlipH) isFlipped = -2f;
-				instBullet.Speed = isFlipped * BulletSpeed;
 				
 				var bulletSpawnPoint = new Node2D(); 
 				if (isCrawl) {
@@ -167,7 +169,20 @@ public partial class MainCharacter : CharacterBody2D
 
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_left", "ui_left");
 
-		if (!isDeath && !isPushed) {
+		if (isPushed) {
+			actualTimerOfPush -= delta;
+			if (actualTimerOfPush <= 0){
+				actualTimerOfPush = timerOfPush;
+				ReceiveDamage(pushDamage);
+				isPushed = false;
+				Velocity = Vector2.Zero;
+			}
+		}
+
+
+
+		if (!isDeath && !isPushed) 
+		{
 			if (!isAttacking && !isAttacking2 && !isHitting && !isCrawl) 
 			{
 				animation.Position = new Vector2(0f, 89f);
@@ -263,21 +278,14 @@ public partial class MainCharacter : CharacterBody2D
 	
 	public void CollisionEnemy(Vector2 normal) {
 		if (!isPushed) {
-			animation.Play("takeHit");
 			Velocity = normal * pushForce;
-			Engine.TimeScale = 0.6;
+			GD.Print(normal);
+			animation.Play("idle");
+			GD.Print(Velocity);
 			isPushed = true;
-			pushTimer.Start();
-			ReceiveDamage(pushDamage);
 		}
 	}
 	
-	public void OnPushTimerTimeout() {
-		GD.Print("ADIOS CONTADOR");
-		Engine.TimeScale = 1.0;
-		isPushed = false;
-		Velocity = Vector2.Zero;
-	}
 	
 	public void ReceiveDamage(int damage) {
 		if (!isHitting) {

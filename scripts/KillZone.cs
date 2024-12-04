@@ -14,11 +14,9 @@ public partial class KillZone : Area2D
 	}
 	
 	public void onBodyEntered(Node2D body) {
-		//GD.Print(body.Name);
 		if (body is MainCharacter) {
 			GetTree().ReloadCurrentScene();
 		}
-		
 	}
 	
 }
