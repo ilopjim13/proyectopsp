@@ -13,6 +13,8 @@ public partial class MainCharacter : CharacterBody2D
 	[Export]
 	public float bulletSpeed = 200;
 	
+	public Timer pushTimer;
+	
 	private bool isAttacking = false;
 	private bool isAttacking2 = false;
 
@@ -20,6 +22,7 @@ public partial class MainCharacter : CharacterBody2D
 	public bool isHitting = false;
 	public bool isDeath = false;
 	public bool isHit = false;
+	public bool isPushed = false;
 	
 	private AnimatedSprite2D animation; 
 	
@@ -27,6 +30,9 @@ public partial class MainCharacter : CharacterBody2D
 
 	public int MaxHp = 100;
 	public int Hp = 100;
+	
+	public float pushForce = -150;
+	public int pushDamage = 5;
 	
 	private double timerOfAttack = 0.6;
 	private double actualTimerOfAttack = 0.6;
@@ -50,6 +56,7 @@ public partial class MainCharacter : CharacterBody2D
 	private Hud vidaHud;
 	
 	public override void _Ready() {
+		pushTimer = GetNode<Timer>("PushTimer");
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		bullet = (PackedScene)ResourceLoader.Load("res://scenes/ataque.tscn");
 		bulletOffSet = new Vector2(35, 83);
@@ -60,7 +67,6 @@ public partial class MainCharacter : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		
 		
 		Vector2 velocity = Velocity;
 
@@ -97,7 +103,7 @@ public partial class MainCharacter : CharacterBody2D
 			
 		}
 
-
+	
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
@@ -161,7 +167,7 @@ public partial class MainCharacter : CharacterBody2D
 
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_left", "ui_left");
 
-		if (!isDeath) {
+		if (!isDeath && !isPushed) {
 			if (!isAttacking && !isAttacking2 && !isHitting && !isCrawl) 
 			{
 				animation.Position = new Vector2(0f, 89f);
@@ -200,7 +206,7 @@ public partial class MainCharacter : CharacterBody2D
 				Velocity = velocity;
 				MoveAndSlide();
 			}
-		} else {
+		} else if (isDeath) {
 			animation.Play("death");
 			actualTimerOfDeath-= delta;
 			if (actualTimerOfDeath <= 0){
@@ -253,6 +259,24 @@ public partial class MainCharacter : CharacterBody2D
 			actualTimerOfAttack2 = timerOfAttack2;
 			isAttacking2 = false;
 		}
+	}
+	
+	public void CollisionEnemy(Vector2 normal) {
+		if (!isPushed) {
+			animation.Play("takeHit");
+			Velocity = normal * pushForce;
+			Engine.TimeScale = 0.6;
+			isPushed = true;
+			pushTimer.Start();
+			ReceiveDamage(pushDamage);
+		}
+	}
+	
+	public void OnPushTimerTimeout() {
+		GD.Print("ADIOS CONTADOR");
+		Engine.TimeScale = 1.0;
+		isPushed = false;
+		Velocity = Vector2.Zero;
 	}
 	
 	public void ReceiveDamage(int damage) {

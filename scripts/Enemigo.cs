@@ -201,6 +201,12 @@ public partial class Enemigo : CharacterBody2D
 			characterBody.ReceiveDamage(5); 
 		}
 	}
+	
+	public void OnBodyEnemigoBodyEntered(Node body) {
+		if (body is MainCharacter character) {
+			character.CollisionEnemy(character.GlobalPosition.DirectionTo(GlobalPosition));
+		}
+	}
 
 
 	public void Eliminated(double delta) {
