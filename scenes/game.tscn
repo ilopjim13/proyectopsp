@@ -1,4 +1,4 @@
-[gd_scene load_steps=764 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=766 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_c6vm5"]
@@ -261,6 +261,7 @@
 [ext_resource type="Texture2D" uid="uid://cpek8ot7ptf6u" path="res://assets/Characters/enemy/1 Enemy/PNG/walk-6.png" id="234_37x82"]
 [ext_resource type="AudioStream" uid="uid://bchgjxxxsx6vy" path="res://assets/sound/music/Spiritualism Corpse.mp3" id="235_27513"]
 [ext_resource type="PackedScene" uid="uid://dd84qrotk2lpn" path="res://scenes/menuPausa.tscn" id="236_n2bs4"]
+[ext_resource type="Texture2D" uid="uid://8d6rrp0qgnds" path="res://assets/blas/ui/flask-upgrades-spritesheet.png" id="260_u4f0v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_80n27"]
 texture = ExtResource("1_nygm4")
@@ -11801,6 +11802,10 @@ height = 38.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mb0sm"]
 distance = -102.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_088ya"]
+atlas = ExtResource("260_u4f0v")
+region = Rect2(80.0681, 0, 17.6262, 22.1002)
+
 [node name="Game" type="Node2D"]
 position = Vector2(-21, -81)
 script = ExtResource("1_c6vm5")
@@ -11896,7 +11901,6 @@ shape = SubResource("CapsuleShape2D_nvgf4")
 
 [node name="bodyEnemigo" type="Area2D" parent="Enemigo"]
 position = Vector2(0, -3.8147e-06)
-scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo/bodyEnemigo"]
 position = Vector2(1.5, -0.999996)
@@ -11961,7 +11965,6 @@ floor_constant_speed = true
 script = ExtResource("158_b8i53")
 Speed = 200.0
 JumpVelocity = -350.0
-pushForce = -350.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
@@ -12028,6 +12031,11 @@ texture = ExtResource("228_61uc6")
 position = Vector2(87, 78)
 scale = Vector2(1.80469, 1.80469)
 texture = ExtResource("230_iduqi")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(576, 45)
+scale = Vector2(1.61765, 1.61765)
+texture = SubResource("AtlasTexture_088ya")
 
 [node name="Puerta" parent="." instance=ExtResource("233_8k2yv")]
 position = Vector2(461, -131)

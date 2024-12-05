@@ -1,10 +1,214 @@
-[gd_scene load_steps=6 format=3 uid="uid://comvarehdrfgo"]
+[gd_scene load_steps=56 format=3 uid="uid://comvarehdrfgo"]
 
 [ext_resource type="Texture2D" uid="uid://br2xdqt0a0rte" path="res://assets/HUD/fondos/fondoMenu.png" id="1_2jmor"]
 [ext_resource type="Script" path="res://scripts/fondo_menu.gd" id="1_bhkbp"]
 [ext_resource type="Texture2D" uid="uid://cka4tm58iomqe" path="res://assets/HUD/fondos/s08o10.png" id="2_2l5xa"]
 [ext_resource type="Texture2D" uid="uid://tsj8vgk6higb" path="res://assets/HUD/fondos/yukariEyes.png" id="2_bootj"]
+[ext_resource type="Texture2D" uid="uid://bby7d07wki004" path="res://assets/blas/menu/crisanta-mainmenu-fg-petals_0000_Capa-1.png" id="3_81e42"]
 [ext_resource type="Texture2D" uid="uid://ce1o30dsqx4fg" path="res://assets/HUD/fondos/yukari.png" id="3_oy120"]
+[ext_resource type="Texture2D" uid="uid://cds8bkuplkv2c" path="res://assets/blas/menu/crisanta-mainmenu-fg-petals_0001_Capa-2.png" id="4_7yc6i"]
+[ext_resource type="Texture2D" uid="uid://bi66ivipstydg" path="res://assets/blas/menu/crisanta-mainmenu-fg-petals_0002_Capa-3.png" id="5_qsp3s"]
+[ext_resource type="Texture2D" uid="uid://b65wby5n04kd" path="res://assets/blas/menu/crisanta-mainmenu-fg-petals_0003_Capa-4.png" id="6_wyjgl"]
+[ext_resource type="Texture2D" uid="uid://c4os67s8ka5jt" path="res://assets/blas/menu/crisanta-mainmenu-fg-petals_0004_Capa-5.png" id="7_4al0t"]
+[ext_resource type="Texture2D" uid="uid://c2bwtl013kvhu" path="res://assets/blas/menu/crisanta-mainmenu-petals_0000_Capa-1.png" id="8_j3lu6"]
+[ext_resource type="Texture2D" uid="uid://caowdg6orh7k2" path="res://assets/blas/menu/crisanta-mainmenu-petals_0001_Capa-2.png" id="9_b7t2k"]
+[ext_resource type="Texture2D" uid="uid://3rh4r60amdgq" path="res://assets/blas/menu/crisanta-mainmenu-petals_0002_Capa-3.png" id="10_155yt"]
+[ext_resource type="Texture2D" uid="uid://jgab767rj3pf" path="res://assets/blas/menu/crisanta-mainmenu-petals_0003_Capa-4.png" id="11_kiiso"]
+[ext_resource type="Texture2D" uid="uid://be2iq0uh261np" path="res://assets/blas/menu/crisanta-mainmenu-petals_0004_Capa-5.png" id="12_p28ug"]
+[ext_resource type="Texture2D" uid="uid://b8ab3f873vlnt" path="res://assets/blas/menu/crisanta-mainmenu-petals_0005_Capa-6.png" id="13_1m7uc"]
+[ext_resource type="Texture2D" uid="uid://dc6reexba4ewk" path="res://assets/blas/menu/crisanta-mainmenu-petals_0006_Capa-7.png" id="14_caeyo"]
+[ext_resource type="Texture2D" uid="uid://b8p3ftcggqhu1" path="res://assets/blas/menu/crisanta-mainmenu-petals_0007_Capa-8.png" id="15_sekem"]
+[ext_resource type="Texture2D" uid="uid://b220bhdgguf38" path="res://assets/blas/menu/crisanta-mainmenu-petals_0008_Capa-9.png" id="16_fsiaf"]
+[ext_resource type="Texture2D" uid="uid://bpk2lm0jgoc8k" path="res://assets/blas/menu/crisanta-mainmenu-petals_0009_Capa-10.png" id="17_1ntfs"]
+[ext_resource type="Texture2D" uid="uid://b2vhfvvfkwy30" path="res://assets/blas/menu/crisanta-mainmenu-petals_0010_Capa-11.png" id="18_txtnh"]
+[ext_resource type="Texture2D" uid="uid://bvbg5hu8cexbq" path="res://assets/blas/menu/crisanta-mainmenu-petals_0011_Capa-12.png" id="19_qiuf3"]
+[ext_resource type="Texture2D" uid="uid://dpxd7x4wpgi4y" path="res://assets/blas/menu/crisanta-mainmenu-petals_0012_Capa-13.png" id="20_1cmm3"]
+[ext_resource type="Texture2D" uid="uid://4rd5jv3q7j3n" path="res://assets/blas/menu/crisanta-mainmenu-petals_0013_Capa-14.png" id="21_gub2b"]
+[ext_resource type="Texture2D" uid="uid://dxadviyjka0u2" path="res://assets/blas/menu/crisanta-mainmenu-petals_0014_Capa-15.png" id="22_pna1p"]
+[ext_resource type="Texture2D" uid="uid://b0q057mkf1t7p" path="res://assets/blas/menu/crisanta-mainmenu-petals_0015_Capa-16.png" id="23_62tn4"]
+[ext_resource type="Texture2D" uid="uid://1xe65vp7y8p1" path="res://assets/blas/menu/crisanta-mainmenu-petals_0016_Capa-17.png" id="24_eec20"]
+[ext_resource type="Texture2D" uid="uid://c3y2tuf8uhbxg" path="res://assets/blas/menu/crisanta-mainmenu-petals_0017_Capa-18.png" id="25_msbbo"]
+[ext_resource type="Texture2D" uid="uid://c6cxvvmdfey4n" path="res://assets/blas/menu/crisanta-mainmenu-petals_0018_Capa-19.png" id="26_2ipj5"]
+[ext_resource type="Texture2D" uid="uid://dfp4627e6lboi" path="res://assets/blas/menu/crisanta-mainmenu-petals_0019_Capa-20.png" id="27_4kia5"]
+[ext_resource type="Texture2D" uid="uid://fv32p4dclp4v" path="res://assets/blas/menu/crisanta-mainmenu-petals_0020_Capa-21.png" id="28_d0b30"]
+[ext_resource type="Texture2D" uid="uid://cbg6h8etdler7" path="res://assets/blas/menu/crisanta-mainmenu-petals_0021_Capa-22.png" id="29_y0ssr"]
+[ext_resource type="Texture2D" uid="uid://c463y12ktsnbo" path="res://assets/blas/menu/crisanta-mainmenu-petals_0022_Capa-23.png" id="30_1q14h"]
+[ext_resource type="Texture2D" uid="uid://44ob6blkigly" path="res://assets/blas/menu/crisanta-mainmenu-petals_0023_Capa-24.png" id="31_728rh"]
+[ext_resource type="Texture2D" uid="uid://t4d3tlkri5xv" path="res://assets/blas/menu/crisanta-mainmenu-petals_0024_Capa-25.png" id="32_5hu7j"]
+[ext_resource type="Texture2D" uid="uid://cya8fv27geptk" path="res://assets/blas/menu/crisanta-mainmenu-petals_0025_Capa-26.png" id="33_qw2ec"]
+[ext_resource type="Texture2D" uid="uid://dedgtiyb8tpws" path="res://assets/blas/menu/crisanta-mainmenu-petals_0026_Capa-27.png" id="34_nwtvd"]
+[ext_resource type="Texture2D" uid="uid://uw1bk5acxpk5" path="res://assets/blas/menu/crisanta-mainmenu-petals_0027_Capa-28.png" id="35_38xxu"]
+[ext_resource type="Texture2D" uid="uid://bbs53mo5a2lm2" path="res://assets/blas/menu/crisanta-mainmenu-petals_0028_Capa-29.png" id="36_6uheu"]
+[ext_resource type="Texture2D" uid="uid://cbo8fhyo66fo2" path="res://assets/blas/menu/crisanta-mainmenu-petals_0029_Capa-30.png" id="37_0iswq"]
+[ext_resource type="Texture2D" uid="uid://wwc0eoyq1uo8" path="res://assets/blas/menu/crisanta-mainmenu-petals_0030_Capa-31.png" id="38_k4x6h"]
+[ext_resource type="Texture2D" uid="uid://ck48rxs7gnynd" path="res://assets/blas/menu/crisanta-mainmenu-petals_0031_Capa-32.png" id="39_wyksd"]
+[ext_resource type="Texture2D" uid="uid://c40glehdqj2g4" path="res://assets/blas/menu/crisanta-mainmenu-petals_0032_Capa-33.png" id="40_8xc0t"]
+[ext_resource type="Texture2D" uid="uid://c5brmfjjt7gmb" path="res://assets/blas/menu/crisanta-mainmenu-petals_0033_Capa-34.png" id="41_i5cl5"]
+[ext_resource type="Texture2D" uid="uid://br6cxx8iy2t52" path="res://assets/blas/menu/crisanta-mainmenu-petals_0034_Capa-35.png" id="42_qa4c5"]
+[ext_resource type="Texture2D" uid="uid://q04ejwsuf3rc" path="res://assets/blas/menu/crisanta-mainmenu-petals_0035_Capa-36.png" id="43_63eot"]
+[ext_resource type="Texture2D" uid="uid://0t4rb5xc3le8" path="res://assets/blas/menu/crisanta-mainmenu-petals_0036_Capa-37.png" id="44_5stq6"]
+[ext_resource type="Texture2D" uid="uid://em2t8p1x51ce" path="res://assets/blas/menu/crisanta-mainmenu-petals_0037_Capa-38.png" id="45_o426l"]
+[ext_resource type="Texture2D" uid="uid://dvp885fg75bxw" path="res://assets/blas/menu/crisanta-mainmenu-petals_0038_Capa-39.png" id="46_55qew"]
+[ext_resource type="Texture2D" uid="uid://b4c6mnwxh76vm" path="res://assets/blas/menu/crisanta-mainmenu-petals_0039_Capa-40.png" id="47_uartg"]
+[ext_resource type="Texture2D" uid="uid://dsy2v0jxq25tc" path="res://assets/blas/menu/crisanta-mainmenu-petals_0040_Capa-41.png" id="48_kapx0"]
+[ext_resource type="Texture2D" uid="uid://cpq6thv40xlyk" path="res://assets/blas/menu/crisanta-mainmenu-petals_0041_Capa-42.png" id="49_aphfn"]
+[ext_resource type="Texture2D" uid="uid://c6rey6qdkobpd" path="res://assets/blas/menu/crisanta-mainmenu-petals_0042_Capa-43.png" id="50_1a1od"]
+[ext_resource type="Texture2D" uid="uid://ba7roor0000al" path="res://assets/blas/menu/crisanta-mainmenu-petals_0043_Capa-44.png" id="51_pgefr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ly35r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_81e42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7yc6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qsp3s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wyjgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4al0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_j3lu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_b7t2k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_155yt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_kiiso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_p28ug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1m7uc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_caeyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_sekem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_fsiaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_1ntfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_txtnh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_qiuf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_1cmm3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_gub2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_pna1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_62tn4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_eec20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_msbbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_2ipj5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_4kia5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_d0b30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_y0ssr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_1q14h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_728rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_5hu7j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_qw2ec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_nwtvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_38xxu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_6uheu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_0iswq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_k4x6h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_wyksd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_8xc0t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_i5cl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_qa4c5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_63eot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_5stq6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_o426l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_55qew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_uartg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_kapx0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_aphfn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_1a1od")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_pgefr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 script = ExtResource("1_bhkbp")
@@ -14,6 +218,13 @@ texture_filter = 1
 position = Vector2(950.379, 540)
 scale = Vector2(2.12181, 2.12181)
 texture = ExtResource("1_2jmor")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(956, 539.5)
+scale = Vector2(2.99722, 2.99722)
+sprite_frames = SubResource("SpriteFrames_ly35r")
+autoplay = "default"
+frame_progress = 0.00854925
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 texture_filter = 1

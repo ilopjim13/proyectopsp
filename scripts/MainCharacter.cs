@@ -7,18 +7,18 @@ public partial class MainCharacter : CharacterBody2D
 	public float Speed;
 	[Export]
 	public float JumpVelocity;
-	
-	[Export]
-	public Vector2 bulletOffSet;
 	[Export]
 	public float bulletSpeed = 200;
-	
 	[Export]
-	public float pushForce = -150;
+	public float pushForce = -350;
+	[Export]
+	public int pushDamage = 5;
+	[Export]
+	public int MaxHp = 100;
+	public int Hp = 100;
 	
 	private bool isAttacking = false;
 	private bool isAttacking2 = false;
-
 	public bool isCrawl = false;
 	public bool isHitting = false;
 	public bool isDeath = false;
@@ -26,38 +26,24 @@ public partial class MainCharacter : CharacterBody2D
 	public bool isPushed = false;
 	
 	private AnimatedSprite2D animation; 
-	
+	public Vector2 bulletOffSet;
 	private PackedScene bullet;
-
-	public int MaxHp = 100;
-	public int Hp = 100;
-	
-	
-	public int pushDamage = 5;
-	
-	private double timerOfAttack = 0.6;
-	private double actualTimerOfAttack = 0.6;
-
-	public double bulletLifeSpan = 0.4;
-	
-	private double timerOfAttack2 = 0.6;
-	private double actualTimerOfAttack2 = 0.6;
-	
-	private double timerOfPush = 0.4;
-	private double actualTimerOfPush = 0.4;
-
-	private double timerOfHit = 0.4;
-	private double actualTimerOfHit = 0.4;
-	
-	private double actualTimerOfDeath = 1.35;
-	
 	private AudioStreamPlayer2D attackSound;
 	private AudioStreamPlayer2D hurtSound;
 	private CollisionShape2D collision;
-	
 	public float BulletSpeed;
-	
 	private Hud vidaHud;
+	
+	private double timerOfAttack = 0.6;
+	private double actualTimerOfAttack = 0.6;
+	public double bulletLifeSpan = 0.4;
+	private double timerOfAttack2 = 0.6;
+	private double actualTimerOfAttack2 = 0.6;
+	private double timerOfPush = 0.4;
+	private double actualTimerOfPush = 0.4;
+	private double timerOfHit = 0.4;
+	private double actualTimerOfHit = 0.4;
+	private double actualTimerOfDeath = 1.35;
 	
 	public override void _Ready() {
 		animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
