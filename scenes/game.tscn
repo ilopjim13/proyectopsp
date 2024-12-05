@@ -11903,7 +11903,7 @@ shape = SubResource("CapsuleShape2D_nvgf4")
 position = Vector2(0, -3.8147e-06)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo/bodyEnemigo"]
-position = Vector2(1.5, -0.999996)
+position = Vector2(167.5, -0.999996)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_0keqw")
 

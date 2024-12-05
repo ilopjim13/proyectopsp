@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dd84qrotk2lpn"]
 
-[ext_resource type="Script" path="res://menu_pausa.gd" id="1_cfpjt"]
+[ext_resource type="Script" path="res://scripts/menu_pausa.gd" id="1_cfpjt"]
 [ext_resource type="Texture2D" uid="uid://cknfv1ppompmg" path="res://assets/blas/ui/fondomenu.png" id="2_4dqnl"]
 [ext_resource type="Texture2D" uid="uid://bx5gb577s5sm3" path="res://assets/blas/ui/botonesmenu.png" id="3_yilkh"]
 

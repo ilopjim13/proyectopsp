@@ -127,7 +127,7 @@ public partial class Enemigo : CharacterBody2D
 
 		if(!isAttack) {
 			GlobalPosition = GlobalPosition.Lerp(GlobalPosition + direction, speed * (float)delta);
-			animation.FlipH = playerPosition.X < enemyPosition.X;
+			animation.FlipH = playerPosition.X < enemyPosition.X || playerPosition.X == enemyPosition.X;
 		}
 		
 		if (animation.FlipH) 
@@ -192,9 +192,11 @@ public partial class Enemigo : CharacterBody2D
 	public void OnBodyEnemigoBodyEntered(Node body) {
 		if (body is MainCharacter character) {
 			if (!animation.FlipH) {
-				character.CollisionEnemy(new Vector2(-1,1));
+				//character.CollisionEnemy(new Vector2(-1,1));
+				character.CollisionEnemy(characterBody.GlobalPosition.DirectionTo(GlobalPosition));
 			} else {
-				character.CollisionEnemy(new Vector2(1,1));
+				//character.CollisionEnemy(new Vector2(1,1));
+				character.CollisionEnemy(characterBody.GlobalPosition.DirectionTo(GlobalPosition));
 			}
 		}
 	}

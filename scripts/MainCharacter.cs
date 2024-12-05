@@ -24,6 +24,7 @@ public partial class MainCharacter : CharacterBody2D
 	public bool isDeath = false;
 	public bool isHit = false;
 	public bool isPushed = false;
+	public bool doubleJump = false;
 	
 	private AnimatedSprite2D animation; 
 	public Vector2 bulletOffSet;
@@ -39,8 +40,8 @@ public partial class MainCharacter : CharacterBody2D
 	public double bulletLifeSpan = 0.4;
 	private double timerOfAttack2 = 0.6;
 	private double actualTimerOfAttack2 = 0.6;
-	private double timerOfPush = 0.4;
-	private double actualTimerOfPush = 0.4;
+	private double timerOfPush = 0;
+	private double actualTimerOfPush = 0;
 	private double timerOfHit = 0.4;
 	private double actualTimerOfHit = 0.4;
 	private double actualTimerOfDeath = 1.35;
@@ -102,12 +103,26 @@ public partial class MainCharacter : CharacterBody2D
 			} else {
 				animation.Play("jumpAttack");
 			}
-		} 
+		}
+		
+		if (IsOnFloor()) {
+			doubleJump = false;
+		}
 
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
+		}
+		
+		if (Input.IsActionJustPressed("jump") && !IsOnFloor())
+		{
+			if (!doubleJump) {
+				velocity.Y = JumpVelocity;
+				doubleJump = true;
+				GD.Print(doubleJump);
+			}
+			
 		}
 		
 		if (Input.IsActionJustPressed("attack") && !isAttacking && !isCrawl)
@@ -156,12 +171,12 @@ public partial class MainCharacter : CharacterBody2D
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_left", "ui_left");
 
 		if (isPushed) {
+			GD.Print("Velocidad = " + Velocity);
+			ReceiveDamage(pushDamage);
 			actualTimerOfPush -= delta;
 			if (actualTimerOfPush <= 0){
 				actualTimerOfPush = timerOfPush;
-				ReceiveDamage(pushDamage);
 				isPushed = false;
-				Velocity = Vector2.Zero;
 			}
 		}
 
@@ -264,9 +279,10 @@ public partial class MainCharacter : CharacterBody2D
 	
 	public void CollisionEnemy(Vector2 normal) {
 		if (!isPushed) {
+			Velocity = Vector2.Zero;
 			Velocity = normal * pushForce;
 			GD.Print(normal);
-			animation.Play("idle");
+			//animation.Play("idle");
 			GD.Print(Velocity);
 			isPushed = true;
 		}
