@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://dudbwbb12uwxa"]
+
+[ext_resource type="Script" path="res://scripts/inventory_item2.gd" id="1_sx3fh"]
+[ext_resource type="Texture2D" uid="uid://pummugojlkfe" path="res://assets/blas/ui/items-icons-spritesheet.png" id="2_fcuit"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7hb8"]
+atlas = ExtResource("2_fcuit")
+region = Rect2(155.681, 425.522, 22.5543, 20.378)
+
+[resource]
+script = ExtResource("1_sx3fh")
+name = "key"
+texture = SubResource("AtlasTexture_r7hb8")

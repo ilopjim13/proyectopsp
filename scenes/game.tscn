@@ -1,4 +1,4 @@
-[gd_scene load_steps=766 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=768 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_c6vm5"]
@@ -261,7 +261,9 @@
 [ext_resource type="Texture2D" uid="uid://cpek8ot7ptf6u" path="res://assets/Characters/enemy/1 Enemy/PNG/walk-6.png" id="234_37x82"]
 [ext_resource type="AudioStream" uid="uid://bchgjxxxsx6vy" path="res://assets/sound/music/Spiritualism Corpse.mp3" id="235_27513"]
 [ext_resource type="PackedScene" uid="uid://dd84qrotk2lpn" path="res://scenes/menuPausa.tscn" id="236_n2bs4"]
+[ext_resource type="Resource" uid="uid://cy6sijtwi33cc" path="res://inventory/player_inventory.tres" id="242_3s7pi"]
 [ext_resource type="Texture2D" uid="uid://8d6rrp0qgnds" path="res://assets/blas/ui/flask-upgrades-spritesheet.png" id="260_u4f0v"]
+[ext_resource type="PackedScene" uid="uid://brkaj0f34kfnf" path="res://scenes/DropItem.tscn" id="263_14sbn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_80n27"]
 texture = ExtResource("1_nygm4")
@@ -11965,6 +11967,7 @@ floor_constant_speed = true
 script = ExtResource("158_b8i53")
 Speed = 200.0
 JumpVelocity = -350.0
+inventory = ExtResource("242_3s7pi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
@@ -12044,6 +12047,9 @@ position = Vector2(461, -131)
 stream = ExtResource("235_27513")
 volume_db = -3.961
 autoplay = true
+
+[node name="DropItem" parent="." instance=ExtResource("263_14sbn")]
+position = Vector2(-31, 117)
 
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo" method="OnEnemyAttack"]
 [connection signal="body_exited" from="Enemigo/AreaAtaque" to="Enemigo" method="OnBodyExited"]

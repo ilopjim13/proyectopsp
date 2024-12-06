@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://p71bioq2leq1"]
+
+[ext_resource type="Script" path="res://scripts/InvUiSlot.cs" id="1_aribr"]
+[ext_resource type="Texture2D" uid="uid://pummugojlkfe" path="res://assets/blas/ui/items-icons-spritesheet.png" id="1_t3v4h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxjpc"]
+atlas = ExtResource("1_t3v4h")
+region = Rect2(151, 1, 30, 30)
+
+[node name="inv_ui_slot" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 16)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_aribr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(20.115, 20.115)
+scale = Vector2(1.32567, 1.32567)
+texture = SubResource("AtlasTexture_jxjpc")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="item_display" type="Sprite2D" parent="CenterContainer/Panel"]

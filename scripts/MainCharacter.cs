@@ -34,6 +34,8 @@ public partial class MainCharacter : CharacterBody2D
 	private CollisionShape2D collision;
 	public float BulletSpeed;
 	private Hud vidaHud;
+	[Export]
+	private Inventory inventory;
 	
 	private double timerOfAttack = 0.6;
 	private double actualTimerOfAttack = 0.6;
