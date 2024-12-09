@@ -1,7 +1,8 @@
 using Godot;
 using System;
 
-public partial class Inventory_item : Resource
+[GlobalClass]
+public partial class InventoryItem : Resource
 {
 	[Export]
 	public String name = "";

@@ -35,7 +35,7 @@ public partial class MainCharacter : CharacterBody2D
 	public float BulletSpeed;
 	private Hud vidaHud;
 	[Export]
-	private Inventory inventory;
+	public Inventory inventory;
 	
 	private double timerOfAttack = 0.6;
 	private double actualTimerOfAttack = 0.6;
@@ -297,7 +297,7 @@ public partial class MainCharacter : CharacterBody2D
 			isHitting = true;
 			if (Hp <= 0) 
 				isDeath = true;
-			vidaHud = GetNode<Hud>("../CanvasLayer/BarraVida"); 
+			vidaHud = GetNode<Hud>("../CanvasLayer/Hud/BarraVida"); 
 			vidaHud.ActualizarBarraVida(Hp, MaxHp); 
 		}
 	}

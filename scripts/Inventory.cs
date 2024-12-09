@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-[Tool]
+[GlobalClass]
 public partial class Inventory : Resource
 {
 	[Export]
-	public Godot.Collections.Array<Inventory_item> item = new Godot.Collections.Array<Inventory_item>();
+	public Godot.Collections.Array<InventoryItem> item = new Godot.Collections.Array<InventoryItem>();
 	
 }

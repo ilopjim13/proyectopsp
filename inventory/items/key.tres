@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://dudbwbb12uwxa"]
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://dudbwbb12uwxa"]
 
-[ext_resource type="Script" path="res://scripts/inventory_item2.gd" id="1_sx3fh"]
-[ext_resource type="Texture2D" uid="uid://pummugojlkfe" path="res://assets/blas/ui/items-icons-spritesheet.png" id="2_fcuit"]
+[ext_resource type="Script" path="res://scripts/InventoryItem.cs" id="1_k0u3a"]
+[ext_resource type="Texture2D" uid="uid://pummugojlkfe" path="res://assets/blas/ui/items-icons-spritesheet.png" id="2_xtdi6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7hb8"]
-atlas = ExtResource("2_fcuit")
-region = Rect2(155.681, 425.522, 22.5543, 20.378)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d0oj"]
+atlas = ExtResource("2_xtdi6")
+region = Rect2(275, 394, 23, 24)
 
 [resource]
-script = ExtResource("1_sx3fh")
-name = "key"
-texture = SubResource("AtlasTexture_r7hb8")
+script = ExtResource("1_k0u3a")
+name = "Key"
+texture = SubResource("AtlasTexture_0d0oj")

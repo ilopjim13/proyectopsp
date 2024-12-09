@@ -13937,7 +13937,6 @@ sources/33 = SubResource("TileSetAtlasSource_2slki")
 sources/35 = SubResource("TileSetAtlasSource_yxtbx")
 
 [node name="Fondo" type="Node2D"]
-visible = false
 
 [node name="Paredes" type="TileMapLayer" parent="."]
 position = Vector2(832, -2)

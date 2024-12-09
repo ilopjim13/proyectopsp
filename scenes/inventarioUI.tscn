@@ -10,6 +10,7 @@ atlas = ExtResource("2_m03uk")
 region = Rect2(238.532, 94.928, 273.727, 233.397)
 
 [node name="InventarioUI" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

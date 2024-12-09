@@ -1,4 +1,4 @@
-[gd_scene load_steps=768 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=770 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_c6vm5"]
@@ -261,7 +261,9 @@
 [ext_resource type="Texture2D" uid="uid://cpek8ot7ptf6u" path="res://assets/Characters/enemy/1 Enemy/PNG/walk-6.png" id="234_37x82"]
 [ext_resource type="AudioStream" uid="uid://bchgjxxxsx6vy" path="res://assets/sound/music/Spiritualism Corpse.mp3" id="235_27513"]
 [ext_resource type="PackedScene" uid="uid://dd84qrotk2lpn" path="res://scenes/menuPausa.tscn" id="236_n2bs4"]
-[ext_resource type="Resource" uid="uid://cy6sijtwi33cc" path="res://inventory/player_inventory.tres" id="242_3s7pi"]
+[ext_resource type="Resource" uid="uid://bdoycksxjvjll" path="res://inventory/inventoryKey.tres" id="242_tdad1"]
+[ext_resource type="PackedScene" uid="uid://bcvum3573fect" path="res://scenes/inventarioUI.tscn" id="254_aljt5"]
+[ext_resource type="Script" path="res://scripts/canvas_layer.gd" id="257_o0ndy"]
 [ext_resource type="Texture2D" uid="uid://8d6rrp0qgnds" path="res://assets/blas/ui/flask-upgrades-spritesheet.png" id="260_u4f0v"]
 [ext_resource type="PackedScene" uid="uid://brkaj0f34kfnf" path="res://scenes/DropItem.tscn" id="263_14sbn"]
 
@@ -11846,6 +11848,12 @@ tile_set = SubResource("TileSet_5hkyo")
 texture_filter = 1
 tile_set = SubResource("TileSet_uf5qk")
 
+[node name="Puerta" parent="." instance=ExtResource("233_8k2yv")]
+position = Vector2(461, -131)
+
+[node name="DropItem" parent="." instance=ExtResource("263_14sbn")]
+position = Vector2(-31, 117)
+
 [node name="Enemigo" type="CharacterBody2D" parent="."]
 position = Vector2(-421, 63)
 collision_layer = 7
@@ -11967,7 +11975,7 @@ floor_constant_speed = true
 script = ExtResource("158_b8i53")
 Speed = 200.0
 JumpVelocity = -350.0
-inventory = ExtResource("242_3s7pi")
+inventory = ExtResource("242_tdad1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
@@ -12009,10 +12017,19 @@ position = Vector2(24, 47)
 shape = SubResource("WorldBoundaryShape2D_mb0sm")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("257_o0ndy")
+
+[node name="InventarioUI" parent="CanvasLayer" instance=ExtResource("254_aljt5")]
 
 [node name="MenuPausa" parent="CanvasLayer" instance=ExtResource("236_n2bs4")]
+visible = false
 
-[node name="BarraVida" type="TextureProgressBar" parent="CanvasLayer"]
+[node name="Hud" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BarraVida" type="TextureProgressBar" parent="CanvasLayer/Hud"]
+layout_mode = 0
 offset_left = 160.0
 offset_top = 74.0
 offset_right = 260.0
@@ -12025,31 +12042,25 @@ texture_progress = ExtResource("227_6rgu3")
 script = ExtResource("217_34csr")
 metadata/_edit_use_anchors_ = true
 
-[node name="HudVida" type="Sprite2D" parent="CanvasLayer"]
+[node name="HudVida" type="Sprite2D" parent="CanvasLayer/Hud"]
 position = Vector2(319.974, 85.5)
 scale = Vector2(1.85526, 1.85526)
 texture = ExtResource("228_61uc6")
 
-[node name="Avatar" type="Sprite2D" parent="CanvasLayer"]
+[node name="Avatar" type="Sprite2D" parent="CanvasLayer/Hud"]
 position = Vector2(87, 78)
 scale = Vector2(1.80469, 1.80469)
 texture = ExtResource("230_iduqi")
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Hud"]
 position = Vector2(576, 45)
 scale = Vector2(1.61765, 1.61765)
 texture = SubResource("AtlasTexture_088ya")
-
-[node name="Puerta" parent="." instance=ExtResource("233_8k2yv")]
-position = Vector2(461, -131)
 
 [node name="BackgroundSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("235_27513")
 volume_db = -3.961
 autoplay = true
-
-[node name="DropItem" parent="." instance=ExtResource("263_14sbn")]
-position = Vector2(-31, 117)
 
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo" method="OnEnemyAttack"]
 [connection signal="body_exited" from="Enemigo/AreaAtaque" to="Enemigo" method="OnBodyExited"]
