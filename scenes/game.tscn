@@ -1,4 +1,4 @@
-[gd_scene load_steps=770 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=771 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Texture2D" uid="uid://dbb304yf3kfqn" path="res://assets/Background/layer_2.png" id="1_5r05r"]
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_c6vm5"]
@@ -210,6 +210,7 @@
 [ext_resource type="Texture2D" uid="uid://c56suvhpqtopl" path="res://assets/Characters/mainCharacter/Attack2.png" id="204_exk20"]
 [ext_resource type="Texture2D" uid="uid://dsh2o3jiwrhek" path="res://assets/Characters/mainCharacter/Jump.png" id="204_xlwmq"]
 [ext_resource type="Texture2D" uid="uid://bielrhnywin72" path="res://assets/Characters/mainCharacter/Death.png" id="205_wwe1k"]
+[ext_resource type="PackedScene" uid="uid://cyhg6ewipp36p" path="res://scenes/puerta_Final.tscn" id="207_n5s05"]
 [ext_resource type="Texture2D" uid="uid://bn35hgyrfdmkr" path="res://assets/Characters/enemy/1 Enemy/PNG/attack-A1.png" id="207_xybkt"]
 [ext_resource type="Texture2D" uid="uid://ceajs1f32k8yb" path="res://assets/Characters/enemy/1 Enemy/PNG/attack-A2.png" id="208_67v0p"]
 [ext_resource type="Texture2D" uid="uid://cqquhit4amy2i" path="res://assets/Characters/mainCharacter/Take Hit.png" id="208_eqyja"]
@@ -11853,6 +11854,9 @@ position = Vector2(461, -131)
 
 [node name="DropItem" parent="." instance=ExtResource("263_14sbn")]
 position = Vector2(-31, 117)
+
+[node name="PuertaFinal" parent="." instance=ExtResource("207_n5s05")]
+position = Vector2(111, 5)
 
 [node name="Enemigo" type="CharacterBody2D" parent="."]
 position = Vector2(-421, 63)

@@ -24,7 +24,15 @@ public partial class DropItem : Area2D
 			if (Input.IsActionJustPressed("takeItem"))
 			{
 				animation.Play("whitoutItem");
-				character.inventory.item[0] = key;
+				var entered = false;
+				for (int i = 0; i < character.inventory.item.Count; i++)
+				{
+					if (character.inventory.item[i] == null && entered == false)
+					{
+						character.inventory.item[i] = key;
+						entered = true;
+					}
+				}
 				GD.Print(character.inventory.item);
 			}
 		}
