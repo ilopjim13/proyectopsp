@@ -161,9 +161,10 @@ scale = Vector2(0.4975, 0.4975)
 sprite_frames = SubResource("SpriteFrames_2l64c")
 animation = &"whitItem"
 autoplay = "whitItem"
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-14.3675, -38.7725)
+position = Vector2(-61.3675, -38.7725)
 scale = Vector2(0.4975, 0.4975)
 shape = SubResource("CircleShape2D_cqhor")
 

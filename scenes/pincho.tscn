@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://fsyjauor0g3i" path="res://assets/tileset/spikes.png" id="2_2j1o2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6fao3"]
-size = Vector2(32, 6)
+size = Vector2(32, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lh07g"]
-size = Vector2(32, 32)
+size = Vector2(32, 27)
 
 [node name="Pincho" type="Node2D"]
 
@@ -23,7 +23,7 @@ position = Vector2(0, 1)
 texture = ExtResource("2_2j1o2")
 
 [node name="danio" type="CollisionShape2D" parent="danio"]
-position = Vector2(0, -15)
+position = Vector2(0, -12.5)
 shape = SubResource("RectangleShape2D_6fao3")
 
 [node name="suelo" type="StaticBody2D" parent="."]
@@ -31,7 +31,7 @@ collision_layer = 2
 collision_mask = 7
 
 [node name="suelo" type="CollisionShape2D" parent="suelo"]
-position = Vector2(35, 16)
+position = Vector2(35, 18.5)
 shape = SubResource("RectangleShape2D_lh07g")
 
 [connection signal="body_entered" from="danio" to="danio" method="OnBodyEntered"]
