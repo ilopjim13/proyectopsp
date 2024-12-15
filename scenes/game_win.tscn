@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://7wkbh214ie7p"]
+
+[ext_resource type="Script" path="res://scripts/Menu.cs" id="1_x1y5c"]
+[ext_resource type="Texture2D" uid="uid://hwv2locvqrwv" path="res://assets/HUD/fondos/gameOver.png" id="2_fp7ia"]
+
+[node name="GameWin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_x1y5c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(958, 541)
+scale = Vector2(2.4, 2.25417)
+texture = ExtResource("2_fp7ia")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 810.0
+offset_top = 712.0
+offset_right = 1110.0
+offset_bottom = 816.0
+theme_override_constants/separation = 32
+
+[node name="Jugar" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Jugar de nuevo
+"
+
+[node name="Salir" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Salir
+"
+
+[connection signal="pressed" from="VBoxContainer/Jugar" to="." method="OnJugarPressed"]
+[connection signal="pressed" from="VBoxContainer/Salir" to="." method="OnSalirPressed"]
