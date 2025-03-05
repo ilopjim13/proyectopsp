@@ -1,4 +1,4 @@
-[gd_scene load_steps=337 format=4 uid="uid://cvc82iqr1lpxp"]
+[gd_scene load_steps=338 format=4 uid="uid://cvc82iqr1lpxp"]
 
 [ext_resource type="Script" path="res://scripts/Game.cs" id="1_c6vm5"]
 [ext_resource type="Texture2D" uid="uid://cu5as3l4e7po2" path="res://assets/Final/Background_0.png" id="2_raxnl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bjewxykxe001x" path="res://assets/Final/Grass_background_1.png" id="5_48gve"]
 [ext_resource type="Texture2D" uid="uid://d2x63577d7rlo" path="res://assets/Final/Tiles.png" id="6_gmqqn"]
 [ext_resource type="Texture2D" uid="uid://bsxswqfduepn4" path="res://assets/Final/brush.png" id="7_0cg2x"]
+[ext_resource type="Script" path="res://scripts/ApiController.cs" id="72_dy10n"]
 [ext_resource type="Script" path="res://scripts/MainCharacter.cs" id="158_b8i53"]
 [ext_resource type="Texture2D" uid="uid://bqml62qh0tn2r" path="res://assets/Characters/mainCharacter/Idle.png" id="203_0h3ja"]
 [ext_resource type="Texture2D" uid="uid://duelyexappg3b" path="res://assets/Characters/mainCharacter/Attack1.png" id="203_5mfqt"]
@@ -4480,6 +4481,11 @@ position = Vector2(-21, -81)
 stream = ExtResource("235_27513")
 volume_db = -8.076
 autoplay = true
+
+[node name="ApiController" type="Node" parent="."]
+script = ExtResource("72_dy10n")
+
+[node name="ApiRequest" type="HTTPRequest" parent="."]
 
 [connection signal="body_entered" from="Enemigo/AreaAtaque" to="Enemigo" method="OnEnemyAttack"]
 [connection signal="body_exited" from="Enemigo/AreaAtaque" to="Enemigo" method="OnBodyExited"]

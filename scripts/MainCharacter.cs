@@ -16,6 +16,7 @@ public partial class MainCharacter : CharacterBody2D
 	[Export]
 	public int MaxHp = 100;
 	public int Hp = 100;
+	public string name = "";
 	
 	private bool isAttacking = false;
 	private bool isAttacking2 = false;
@@ -25,6 +26,7 @@ public partial class MainCharacter : CharacterBody2D
 	public bool isHit = false;
 	public bool isPushed = false;
 	public bool doubleJump = false;
+	public bool isSave = false;
 	
 	private AnimatedSprite2D animation; 
 	public Vector2 bulletOffSet;
@@ -32,6 +34,7 @@ public partial class MainCharacter : CharacterBody2D
 	private AudioStreamPlayer2D attackSound;
 	private AudioStreamPlayer2D hurtSound;
 	private CollisionShape2D collision;
+	private ApiController _apiHandler;
 	public float BulletSpeed;
 	private Hud vidaHud;
 	[Export]
@@ -55,6 +58,7 @@ public partial class MainCharacter : CharacterBody2D
 		attackSound = GetNode<AudioStreamPlayer2D>("AttackSound");
 		hurtSound = GetNode<AudioStreamPlayer2D>("HurtSound");
 		collision = GetNode<CollisionShape2D>("CollisionShape2D");
+		_apiHandler = GetNode<ApiController>("../ApiController");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -115,6 +119,13 @@ public partial class MainCharacter : CharacterBody2D
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
+		}
+		
+		// Handle Jump.
+		if (Input.IsActionJustPressed("save"))
+		{
+			isSave = true;
+			SavePlayerData();
 		}
 		
 		if (Input.IsActionJustPressed("jump") && !IsOnFloor())
@@ -287,6 +298,14 @@ public partial class MainCharacter : CharacterBody2D
 			//animation.Play("idle");
 			GD.Print(Velocity);
 			isPushed = true;
+		}
+	}
+	
+	public void SavePlayerData()
+	{
+		if(isSave){
+			_apiHandler.SaveCharacterData(this);
+			isSave = false;
 		}
 	}
 	
