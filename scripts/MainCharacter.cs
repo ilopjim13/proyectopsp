@@ -36,6 +36,7 @@ public partial class MainCharacter : CharacterBody2D
 	private CollisionShape2D collision;
 	private ApiController _apiHandler;
 	public float BulletSpeed;
+	private Game _game;
 	private Hud vidaHud;
 	[Export]
 	public Inventory inventory;
@@ -59,11 +60,11 @@ public partial class MainCharacter : CharacterBody2D
 		hurtSound = GetNode<AudioStreamPlayer2D>("HurtSound");
 		collision = GetNode<CollisionShape2D>("CollisionShape2D");
 		_apiHandler = GetNode<ApiController>("../ApiController");
+		_game = GetParent() as Game;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		
 		Vector2 velocity = Velocity;
 
 		// Verificar si una acción específica ha sido presionada
@@ -304,9 +305,19 @@ public partial class MainCharacter : CharacterBody2D
 	public void SavePlayerData()
 	{
 		if(isSave){
-			_apiHandler.SaveCharacterData(this);
-			isSave = false;
+			if(_game.isExist){
+				_apiHandler.UpdateCharacter(this);
+				isSave = false;
+			} else {
+				_apiHandler.SaveCharacterData(this);
+				isSave = false;
+			}
 		}
+	}
+	
+	public void UpdateVida() {
+		vidaHud = GetNode<Hud>("../CanvasLayer/Hud/BarraVida"); 
+		vidaHud.ActualizarBarraVida(Hp, MaxHp); 
 	}
 	
 	
@@ -316,8 +327,7 @@ public partial class MainCharacter : CharacterBody2D
 			isHitting = true;
 			if (Hp <= 0) 
 				isDeath = true;
-			vidaHud = GetNode<Hud>("../CanvasLayer/Hud/BarraVida"); 
-			vidaHud.ActualizarBarraVida(Hp, MaxHp); 
+			UpdateVida();
 		}
 	}
 }
